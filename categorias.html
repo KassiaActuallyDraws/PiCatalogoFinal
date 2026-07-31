@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Duck-ee | Catálogo</title>
+    <link rel="stylesheet" href="css/estilo-tienda.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Edu+AU+VIC+WA+NT+Guides:wght@500&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header class="header">
+        <a href="tienda.html" class="logo">
+            DUCK-EE
+        </a>
+        <!-- a -->
+        <!-- <input type="checkbox" id="toggle">
+        <label for="toggle" class="menu-btn">
+            <img src="images/images/menu.png" alt="Menú">
+        </label> -->
+
+        <nav class="navigation">
+            <ul>
+                <li>
+                    <a href="juguetes.html">Juguetes</a>
+                </li>
+                <li>
+                    <a href="categorias.html"><b>Categorías</b></a>
+                </li>
+                <li>
+                    <a href="us.html">Sobre Nosotros</a>
+                </li>
+                <li>
+                    <a href="sesion.html" id="nom_tienda">Perfil</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+<!-- La idea era ponerle labels con sus categorias para que al seleccionar la categoria, se vaya a juguetes.html y solo muestre los productos que tienen la categoria que se selecciono -->
+<!-- Pero si es muy complicado, se puede que se vaya a diferentes paginas visualmente identicas que solo tengan los articulos de esa categoria puestos manualmente -->
+<!-- No se supone que use base de datos pero si no hay de otra esta bien -->
+<main class="catalogo">
+    <section class="categorias"> 
+        <h2> Categorias: </h2>
+        <ul>
+            <li><a href="/categoria/catalogo_patos.html"><img src="images/images/Banners_pato.png"></a></li>
+            <li><a href="/categoria/catalogo_peluches.html"><img src="images/images/Banner_peluche.png"></a></li>
+            <li><a href="/categoria/catalogo_legos.html"><img src="images/images/Banner_lego.png"></a></li>
+            <li><a href="/categoria/catalogo_figuras.html"><img src="images/images/Banners_figuras.png"></a></li>
+            <li><a href="/categoria/catalogo_verano.html"><img src="images/images/Banners_verano.png"></a></li>
+            <li><a href="/categoria/catalogo_invierno.html"><img src="images/images/Banners_invierno.png"></a></li>
+        </ul>
+    </section>
+
+<footer class="footer">
+    <p><a href="https://www.instagram.com/duckee.company/">Contacto</a></p>
+    <p>© 2026 Duck-ee. Todos los derechos reservados.</p>
+</footer>
+<script src="../js/sesion-header.js"></script>
+</main>
+</body>
+</html>  

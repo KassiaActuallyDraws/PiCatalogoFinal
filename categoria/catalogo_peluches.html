@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Duck-ee | Catálogo</title>
+    <link rel="stylesheet" href="../css/estilo-tienda.css">
+    <script src="../js/buscar.js"></script>
+    <!-- Fuente --> 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Edu+AU+VIC+WA+NT+Guides:wght@500&display=swap" rel="stylesheet">
+    <script src="js/buscar.js"></script>
+</head>
+<body onload="search_animal();">
+    <!-- ================= HEADER ================= -->
+    <header class="header">
+        <a href="/tienda.html" class="logo">
+            DUCK-EE
+        </a>
+        <!--<input type="checkbox" id="toggle">
+        <label for="toggle" class="menu-btn">
+            <img src="images/images/menu.png" alt="Menú">
+        </label> -->
+        <nav class="navigation">
+            <ul id>
+                <div class="container">
+                        <input id="searchbar" 
+                            onkeyup="search_animal()" 
+                            type="text" name="search" 
+                            placeholder="Buscar">
+                </div>
+                <li>
+                    <a href="../juguetes.html"><b>Juguetes</b></a>
+                </li>
+                <li>
+                    <a href="../categorias.html">Categorías</a>
+                </li>
+                <li>
+                    <a href="../us.html">Sobre Nosotros</a>
+                </li>
+                <li>
+                    <a href="../sesion.html">Perfil</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main class="catalogo">
+
+    <!-- La herramienta de busqueda revisa los subtitulos Y los nombres de archivo para que sepan como funciona -->
+    <section class="juguetes"> 
+        <ul id="list">
+            <li class="juguetes">
+                <a href="/datos/peluches/peluche1.html"><img src="../images/Juguetes/Peluches/Capibara peluche.webp"></a>
+                <p> Peluche Capibara </p>
+            </li>
+            <li class="juguetes">
+                <a href="/datos/peluches/peluche2.html"><img src="../images/Juguetes/Peluches/Peluche Snoopy.jpg"></a>
+                <p> Peluche Snoopy </p>
+            </li>
+            <li class="juguetes">
+                <a href="/datos/peluches/peluche3.html"><img src="../images/Juguetes/Peluches/Peluche Yi XI.webp"></a>
+                <p> Peluche Yi XI </p>
+            </li>
+            <li class="juguetes">
+                <a href="/datos/peluches/peluche4.html"><img src="../images/Juguetes/Peluches/Peluche Patos.jpg"></a>
+                <p> Peluche Patos </p>
+            </li>
+            <li>
+                <a href="/datos/peluches/peluche5.html"><img src="../images/Juguetes/Peluches/Peluche Miku.png"></a>
+                <p> Peluche Miku</p>
+            </li>
+        </ul>
+        <ul>
+            <li class="juguetes">
+                <a href="/datos/peluches/peluche6.html"><img src="../images/Juguetes/Peluches/Peluche Don Quixote.webp"></a>
+                <p> Peluche Don Quixote </p>
+            </li>
+            <li class="juguetes">
+                <a href="/datos/peluches/peluche7.html"><img src="../images/Juguetes/Peluches/Peluche Teto.jpg"></a>
+                <p> Peluche Teto </p>
+            </li>
+            <li class="juguetes">
+                <a href="/datos/peluches/peluche8.html"><img src="../images/Juguetes/Peluches/Peluche Fpx.png"></a>
+                <p> Peluche Doggy </p>
+            </li>
+            <li class="juguetes">
+                <a href="/datos/peluches/peluche9.html"><img src="../images/Juguetes/Peluches/Pelo Peluche.jpg"></a>
+                <p> Pelo Peluche </p>
+            <li>
+                <a href="/datos/peluches/peluche10.html"><img src="../images/Juguetes/Peluches/Peluche Pou.jpg"></a>
+                <p> Peluche Pou </p>
+            </li>
+            </li>
+        </ul>
+    </section>
+
+<footer class="footer">
+    <p><a href="https://www.instagram.com/duckee.company/">Contacto</a></p>
+    <p>© 2026 Duck-ee. Todos los derechos reservados.</p>
+</footer>
+<script src="../js/sesion-header.js"></script>
+</main>
+</body>
+</html>  

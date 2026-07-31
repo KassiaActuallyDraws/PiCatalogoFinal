@@ -1,0 +1,394 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+
+    background:#FFFCEE;
+
+    font-family:"Itim", cursive;
+
+    color:#222;
+
+    overflow-x:hidden;
+}
+
+h1,
+h2,
+.logo,
+.navigation a{
+
+    font-family:"Edu AU VIC WA NT Guides", cursive;
+}
+
+.header{
+
+    position:sticky;
+    top:0;
+
+    width:100%;
+
+    background:#F3CF18;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:12px 40px;
+
+    z-index:1000;
+
+    box-shadow:0 3px 10px rgba(0,0,0,.12);
+}
+
+.logo{
+
+    text-decoration:none;
+
+    color:white;
+
+    font-size:3rem;
+
+    transition:.25s;
+}
+
+.logo:hover{
+
+    transform:scale(1.04);
+}
+
+.navigation ul{
+
+    list-style:none;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:35px;
+}
+
+.navigation a{
+
+    color:white;
+
+    text-decoration:none;
+
+    font-size:1.45rem;
+
+    transition:.25s;
+}
+
+.navigation a:hover{
+
+    opacity:.8;
+}
+
+.nom{
+
+    display:inline;
+}
+
+.detalle-producto{
+
+    width:min(95%,1600px);
+
+    margin:35px auto;
+
+    display:grid;
+
+    grid-template-columns:minmax(600px,1fr) 340px;
+
+    gap:35px;
+
+    align-items:start;
+}
+
+.producto{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:25px;
+}
+
+.imagen-producto{
+
+    background:white;
+
+    border-radius:25px;
+
+    min-height:460px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:30px;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+}
+
+.imagen-producto img{
+
+    width:100%;
+
+    max-width:430px;
+
+    max-height:420px;
+
+    object-fit:contain;
+}
+
+.info-producto{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:25px;
+}
+
+.titulo-producto{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:20px;
+
+    flex-wrap:wrap;
+}
+
+.titulo-producto h1{
+
+    font-size:clamp(2.3rem,3vw,4rem);
+
+    color:#222;
+}
+
+.acciones{
+
+    display:flex;
+
+    gap:20px;
+}
+
+.btn-icono{
+
+    border:none;
+
+    background:none;
+
+    cursor:pointer;
+
+    font-size:2.2rem;
+
+    color:#333;
+
+    transition:.25s;
+}
+
+.btn-icono:hover{
+
+    transform:scale(1.12);
+
+    color:#C69458;
+}
+
+.tienda{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    width:max-content;
+
+    padding:12px 20px;
+
+    background:#C79E6B;
+
+    border-radius:16px;
+
+    box-shadow:0 4px 12px rgba(0,0,0,.10);
+
+}
+
+.tienda img{
+
+    width:55px;
+
+    height:55px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+    border:3px solid white;
+
+}
+
+.tienda span{
+
+    font-size:1.3rem;
+
+    color:#222;
+
+}
+
+.panel-lateral{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:25px;
+
+}
+
+.caracteristicas{
+
+    background:#D9C1A5;
+
+    border-radius:22px;
+
+    padding:28px;
+
+    box-shadow:0 6px 15px rgba(0,0,0,.08);
+
+}
+
+.caracteristicas h2{
+
+    text-align:center;
+
+    font-size:2rem;
+
+    margin-bottom:18px;
+
+}
+
+.caracteristicas ul{
+
+    margin-left:22px;
+
+    line-height:1.8;
+
+    font-size:1.15rem;
+
+}
+
+.caracteristicas li{
+
+    margin-bottom:12px;
+
+}
+
+.garantia{
+
+    margin-top:25px;
+
+    text-align:center;
+
+    font-size:.95rem;
+
+    line-height:1.6;
+
+}
+
+
+.comentarios{
+
+    background:#D9C1A5;
+
+    border-radius:22px;
+
+    padding:28px;
+
+    box-shadow:0 6px 15px rgba(0,0,0,.08);
+
+}
+
+.comentarios h2{
+
+    text-align:center;
+
+    font-size:2rem;
+
+    margin-bottom:25px;
+
+}
+
+.comentario{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:16px;
+
+    margin-bottom:18px;
+
+}
+
+.comentario:last-child{
+
+    margin-bottom:0;
+
+}
+
+.comentario img{
+
+    width:55px;
+
+    height:55px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+}
+
+.mensaje{
+
+    flex:1;
+
+    height:42px;
+
+    background:#BD915A;
+
+    border-radius:12px;
+
+}
+
+.caracteristicas,
+.comentarios,
+.imagen-producto,
+.tienda{
+
+    transition:.25s;
+
+}
+
+.caracteristicas:hover,
+.comentarios:hover,
+.imagen-producto:hover{
+
+    transform:translateY(-3px);
+
+}
+
+

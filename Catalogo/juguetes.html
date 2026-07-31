@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Duck-ee | Catálogo</title>
+    <link rel="stylesheet" href="css/estilo-tienda.css">
+    <!-- Fuente -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Edu+AU+VIC+WA+NT+Guides:wght@500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- ================= HEADER ================= -->
+    <header class="header">
+        <a href="tienda.html" class="logo">
+            DUCK-EE
+        </a>
+        <!--<input type="checkbox" id="toggle">
+        <label for="toggle" class="menu-btn">
+            <img src="images/images/menu.png" alt="Menú">
+        </label> -->
+        <nav class="navigation">
+            <ul>
+                    <div class="container">
+                        <input id="searchbar" 
+                            onkeyup="search_animal()" 
+                            type="text" name="search" 
+                            placeholder="Buscar">
+                    </div>
+                <li>
+                    <a href="juguetes.html"><b>Juguetes</b></a>
+                </li>
+                <li>
+                    <a href="categorias.html">Categorías</a>
+                </li>
+                <li>
+                    <a href="us.html">Sobre Nosotros</a>
+                </li>
+                <li>
+                    <a href="sesion.html" id="nom_tienda">Perfil</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main class="catalogo">
+
+    <!-- La herramienta de busqueda revisa los subtitulos Y los nombres de archivo para que sepan como funciona -->
+    <section class="juguetes"> 
+        <ul id="list">
+            <li class="juguetes">
+                <a href="dato.html"><img src="/images/Juguetes/Patos/Pato buzo.jpg"></a>
+                <p> Pato buzo </p>
+            </li>
+            <li class="juguetes">
+                <a href="dato.html"><img src="/images/Juguetes/Patos/Pato tpg.jpg"></a>
+                <p> Pato TPG </p>
+            </li>
+            <li class="juguetes">
+                <a href="dato.html"><img src="images/Juguetes/Legos/Lego Snoopy.png"></a>
+                <p> Snoopy </p>
+            </li>
+            <li class="juguetes">
+                <a href="dato.html"><img src="images/Juguetes/Verano/Verano pistolas.webp"></a>
+                <p> Pistolas de agua </p>
+            </li>
+            <li class="juguetes">
+                <a href="dato.html"><img src="/images/Juguetes/Verano/Verano dino.avif"></a>
+                <p> Set Dinosaurios </p>
+            </li>
+        </ul>
+        <ul>
+            <li class="juguetes">
+                <a href="dato.html"><img src="images/Juguetes/Verano/Verano dino.avif"></a>
+                <p> Set Dinosaurios </p>
+            </li>
+            <li class="juguetes">
+                <a href="dato.html"><img src="images/Juguetes/Legos/Lego halcon milenario.webp"></a>
+                <p> Lego Halcón Milenario </p>
+            </li>
+            <li class="juguetes">
+                <a href="dato.html"><img src="images/Juguetes/Legos/Lego ep 3.avif"></a>
+                <p> Lego Episode 3 </p>
+            </li>
+            <li class="juguetes">
+                <a href="dato.html"><img src="images/Juguetes/Peluches/Peluche Dante.jpg"></a>
+                <p> Peluche Dante </p>
+            </li>
+            <li class="juguetes">
+                <a href="dato.html"><img src="/images/Juguetes/Peluches/Peluche Miku.png"></a>
+                <p> Peluche Miku </p>
+            </li>
+        </ul>
+    </section>
+</main>
+<footer class="footer">
+    <p><a href="https://www.instagram.com/duckee.company/">Contacto</a></p>
+    <p>© 2026 Duck-ee. Todos los derechos reservados.</p>
+</footer>
+
+<script src="js/buscar.js"></script>
+ <script src="js/script.js"></script>
+<script src="js/sesion-header.js"></script>
+</body>
+</html>  
