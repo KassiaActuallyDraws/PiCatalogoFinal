@@ -1,4 +1,5 @@
 using Microsoft.Data.SqlClient;
+using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,217 +19,469 @@ var app = builder.Build();
 
 app.UseCors("DuckEE");
 
-app.MapPost("/api/registro", (RegistroDTO usuario, ConexionDB db) =>
+app.UseStaticFiles();
+
+app.MapPost("/api/subir-imagen",
+async ([FromForm] IFormFile archivo) =>
 {
-    using var conexion = db.GetConexion();
-    conexion.Open();
-
-    string verificar =
-        "SELECT COUNT(*) FROM Usuario WHERE Correo = @Correo";
-
-    using var cmdVerificar = new SqlCommand(verificar, conexion);
-
-    cmdVerificar.Parameters.AddWithValue("@Correo", usuario.Correo);
-
-    int existe = (int)cmdVerificar.ExecuteScalar();
-
-    if (existe > 0)
+    if (archivo == null || archivo.Length == 0)
     {
         return Results.BadRequest(new
         {
-            mensaje = "Ese correo ya está registrado."
+            mensaje = "No se recibió ninguna imagen."
         });
     }
 
-    string sql =
-    @"INSERT INTO Usuario
-    (
-        Correo,
-        Contrasena,
-        Rol
-    )
+    var carpeta = Path.Combine(
+        Directory.GetCurrentDirectory(),
+        "wwwroot",
+        "galeria"
+    );
 
-    VALUES
+    Directory.CreateDirectory(carpeta);
 
-    (
-        @Correo,
-        @Contrasena,
-        'Cliente'
-    )";
+    var nombreArchivo =
+        Guid.NewGuid().ToString() +
+        Path.GetExtension(archivo.FileName);
 
-    using var cmd = new SqlCommand(sql, conexion);
+    var rutaCompleta =
+        Path.Combine(carpeta, nombreArchivo);
 
-    cmd.Parameters.AddWithValue("@Correo", usuario.Correo);
-    cmd.Parameters.AddWithValue("@Contrasena", usuario.Contrasena);
-
-    cmd.ExecuteNonQuery();
+    using (var stream = File.Create(rutaCompleta))
+    {
+        await archivo.CopyToAsync(stream);
+    }
 
     return Results.Ok(new
     {
-        mensaje = "Cuenta creada correctamente."
+        ruta = $"galeria/{nombreArchivo}"
     });
+});
+
+app.MapPost("/api/registro", (RegistroDTO usuario, ConexionDB db) =>
+{
+    try
+    {
+        using var conexion = db.GetConexion();
+
+        conexion.Open();
+
+        string verificar = @"
+
+        SELECT COUNT(*)
+
+        FROM Usuario
+
+        WHERE Usuario=@Usuario
+
+        OR Correo=@Correo";
+
+        using var cmdVerificar =
+            new SqlCommand(verificar, conexion);
+
+        cmdVerificar.Parameters.AddWithValue("@Usuario", usuario.Usuario);
+
+        cmdVerificar.Parameters.AddWithValue("@Correo", usuario.Correo);
+
+        int existe = Convert.ToInt32(cmdVerificar.ExecuteScalar());
+
+        if (existe > 0)
+        {
+            return Results.BadRequest(new
+            {
+                mensaje = "El usuario o el correo ya están registrados."
+            });
+        }
+
+        string sql = @"
+
+        INSERT INTO Usuario
+        (
+
+            Usuario,
+
+            Correo,
+
+            Contrasena,
+
+            Rol,
+
+            FotoPerfil,
+
+            Activo,
+
+            FechaRegistro
+
+        )
+
+        VALUES
+        (
+
+            @Usuario,
+
+            @Correo,
+
+            @Contrasena,
+
+            'Cliente',
+
+            'images/perfiles/default.png',
+
+            1,
+
+            GETDATE()
+
+        )";
+
+        using var cmd =
+            new SqlCommand(sql, conexion);
+
+        cmd.Parameters.AddWithValue("@Usuario", usuario.Usuario);
+
+        cmd.Parameters.AddWithValue("@Correo", usuario.Correo);
+
+        cmd.Parameters.AddWithValue("@Contrasena", usuario.Contrasena);
+
+        cmd.ExecuteNonQuery();
+
+        return Results.Ok(new
+        {
+            mensaje = "Cuenta creada correctamente."
+        });
+
+    }
+    catch (Exception ex)
+    {
+        return Results.BadRequest(new
+        {
+            mensaje = ex.Message
+        });
+    }
 
 });
 
 app.MapPost("/api/login", (LoginDTO usuario, ConexionDB db) =>
 {
-    using var conexion = db.GetConexion();
+    try
+    {
+        using var conexion = db.GetConexion();
 
-    conexion.Open();
+        conexion.Open();
 
-    string sql =
-    @"SELECT
-        IdUsuario,
-        Correo,
-        Rol
+        string sql = @"
 
-      FROM Usuario
+        SELECT
 
-      WHERE Correo=@Correo
-      AND Contrasena=@Contrasena
-      AND Activo = 1";
+            IdUsuario,
 
-    using var cmd = new SqlCommand(sql, conexion);
+            Usuario,
 
-    cmd.Parameters.AddWithValue("@Correo", usuario.Correo);
-    cmd.Parameters.AddWithValue("@Contrasena", usuario.Contrasena);
+            Correo,
 
-    using var lector = cmd.ExecuteReader();
+            Rol,
 
-    if (!lector.Read())
+            FotoPerfil,
+
+            Activo
+
+        FROM Usuario
+
+        WHERE Usuario=@Usuario
+
+        AND Contrasena=@Contrasena";
+
+        using var cmd =
+            new SqlCommand(sql, conexion);
+
+        cmd.Parameters.AddWithValue("@Usuario", usuario.Usuario);
+
+        cmd.Parameters.AddWithValue("@Contrasena", usuario.Contrasena);
+
+        using var lector = cmd.ExecuteReader();
+
+        if (!lector.Read())
+        {
+            return Results.BadRequest(new
+            {
+                mensaje = "Usuario o contraseña incorrectos."
+            });
+        }
+
+        bool activo = Convert.ToBoolean(lector["Activo"]);
+
+        if (!activo)
+        {
+            return Results.BadRequest(new
+            {
+                mensaje = "La cuenta está desactivada."
+            });
+        }
+
+        int idUsuario = Convert.ToInt32(lector["IdUsuario"]);
+
+        string nombreUsuario = lector["Usuario"].ToString()!;
+
+        string correo = lector["Correo"].ToString()!;
+
+        string rol = lector["Rol"].ToString()!;
+
+        string fotoPerfil = lector["FotoPerfil"].ToString()!;
+
+        lector.Close();
+
+        string actualizar = @"
+
+        UPDATE Usuario
+
+        SET UltimoAcceso = GETDATE()
+
+        WHERE IdUsuario=@Id";
+
+        using var cmdActualizar =
+            new SqlCommand(actualizar, conexion);
+
+        cmdActualizar.Parameters.AddWithValue("@Id", idUsuario);
+
+        cmdActualizar.ExecuteNonQuery();
+
+        return Results.Ok(new
+        {
+            id = idUsuario,
+
+            usuario = nombreUsuario,
+
+            correo = correo,
+
+            rol = rol,
+
+            fotoPerfil = fotoPerfil
+        });
+
+    }
+    catch (Exception ex)
     {
         return Results.BadRequest(new
         {
-            mensaje = "Correo o contraseña incorrectos."
+            mensaje = ex.ToString()
         });
     }
-
-    int idUsuario = Convert.ToInt32(lector["IdUsuario"]);
-    string correo = lector["Correo"].ToString()!;
-    string rol = lector["Rol"].ToString()!;
-
-    lector.Close();
-
-    string actualizar =
-        @"UPDATE Usuario
-          SET UltimoAcceso = GETDATE()
-          WHERE IdUsuario = @Id";
-
-    using var cmdActualizar = new SqlCommand(actualizar, conexion);
-
-    cmdActualizar.Parameters.AddWithValue("@Id", idUsuario);
-
-    cmdActualizar.ExecuteNonQuery();
-
-    return Results.Ok(new
-    {
-        id = idUsuario,
-        correo,
-        rol
-    });
-
 });
 
 app.MapGet("/api/productos", (ConexionDB db) =>
 {
-    List<object> productos = new();
-
-    using var conexion = db.GetConexion();
-
-    conexion.Open();
-
-    string sql =
-    @"SELECT
-        P.IdProducto,
-        P.Nombre,
-        P.Descripcion,
-        P.Precio,
-        P.Stock,
-        P.Imagen,
-        C.Nombre AS Categoria,
-        M.Nombre AS Marca
-
-      FROM Productos P
-
-      INNER JOIN Categorias C
-        ON P.IdCategoria = C.IdCategoria
-
-      INNER JOIN Marcas M
-        ON P.IdMarca = M.IdMarca
-
-      WHERE Estado = 1";
-
-    using var cmd = new SqlCommand(sql, conexion);
-
-    using var lector = cmd.ExecuteReader();
-
-    while (lector.Read())
+    try
     {
-        productos.Add(new
+        List<object> productos = new();
+
+        using var conexion = db.GetConexion();
+
+        conexion.Open();
+
+        string sql = @"
+
+        SELECT
+
+            P.IdProducto,
+
+            P.Nombre,
+
+            P.Descripcion,
+
+            P.Precio,
+
+            P.Stock,
+
+            P.Imagen,
+
+            C.Nombre AS Categoria,
+
+            M.Nombre AS Marca
+
+        FROM Productos P
+
+        INNER JOIN Categorias C
+
+            ON P.IdCategoria=C.IdCategoria
+
+        INNER JOIN Marcas M
+
+            ON P.IdMarca=M.IdMarca
+
+        WHERE P.Estado=1
+
+        ORDER BY P.Nombre";
+
+        using var cmd =
+            new SqlCommand(sql, conexion);
+
+        using var lector =
+            cmd.ExecuteReader();
+
+        while (lector.Read())
         {
-            id = lector["IdProducto"],
-            nombre = lector["Nombre"],
-            descripcion = lector["Descripcion"],
-            precio = lector["Precio"],
-            stock = lector["Stock"],
-            imagen = lector["Imagen"],
-            categoria = lector["Categoria"],
-            marca = lector["Marca"]
+            productos.Add(new
+            {
+                id = lector["IdProducto"],
+
+                nombre = lector["Nombre"],
+
+                descripcion = lector["Descripcion"],
+
+                precio = lector["Precio"],
+
+                stock = lector["Stock"],
+
+                imagen = lector["Imagen"],
+
+                categoria = lector["Categoria"],
+
+                marca = lector["Marca"]
+            });
+        }
+
+        return Results.Ok(productos);
+    }
+    catch (Exception ex)
+    {
+        return Results.BadRequest(new
+        {
+            mensaje = ex.Message
         });
     }
 
-    return Results.Ok(productos);
+});
+
+app.MapPost("/api/producto",
+
+(ProductoDTO producto,
+ConexionDB db) =>
+{
+    try
+    {
+        using var conexion = db.GetConexion();
+
+        conexion.Open();
+
+        string sql = @"
+
+        INSERT INTO Productos
+        (
+            Nombre,
+            Descripcion,
+            Precio,
+            Stock,
+            Imagen,
+            IdCategoria,
+            IdMarca,
+            IdProveedor,
+            Estado
+        )
+
+        VALUES
+        (
+            @Nombre,
+            @Descripcion,
+            @Precio,
+            @Stock,
+            @Imagen,
+            @Categoria,
+            @Marca,
+            @Proveedor,
+            1
+        )";
+
+        using var cmd =
+            new SqlCommand(sql, conexion);
+
+        cmd.Parameters.AddWithValue("@Nombre", producto.Nombre);
+        cmd.Parameters.AddWithValue("@Descripcion", producto.Descripcion);
+        cmd.Parameters.AddWithValue("@Precio", producto.Precio);
+        cmd.Parameters.AddWithValue("@Stock", producto.Stock);
+        cmd.Parameters.AddWithValue("@Imagen", producto.Imagen);
+        cmd.Parameters.AddWithValue("@Categoria", producto.IdCategoria);
+        cmd.Parameters.AddWithValue("@Marca", producto.IdMarca);
+        cmd.Parameters.AddWithValue("@Proveedor", producto.IdProveedor);
+
+        cmd.ExecuteNonQuery();
+
+        return Results.Ok(new
+        {
+            mensaje = "Producto agregado correctamente."
+        });
+
+    }
+    catch (Exception ex)
+    {
+        return Results.BadRequest(new
+        {
+            mensaje = ex.Message
+        });
+    }
 
 });
 
-app.MapPost("/api/producto", (ProductoDTO producto, ConexionDB db) =>
+app.MapGet("/api/producto/{id}",
+
+(int id, ConexionDB db) =>
 {
-    using var conexion = db.GetConexion();
+    try
+    {
+        using var conexion = db.GetConexion();
 
-    conexion.Open();
+        conexion.Open();
 
-    string sql =
-    @"INSERT INTO Productos
-    (
-        Nombre,
-        Descripcion,
-        Precio,
-        Stock,
-        Imagen,
-        IdCategoria,
-        IdMarca,
-        IdProveedor
-    )
+        string sql = @"
 
-    VALUES
-    (
-        @Nombre,
-        @Descripcion,
-        @Precio,
-        @Stock,
-        @Imagen,
-        @Categoria,
-        @Marca,
-        @Proveedor
-    )";
+        SELECT
 
-    using var cmd = new SqlCommand(sql, conexion);
+            IdProducto,
+            Nombre,
+            Descripcion,
+            Precio,
+            Stock,
+            Imagen,
+            IdCategoria,
+            IdMarca,
+            IdProveedor
 
-    cmd.Parameters.AddWithValue("@Nombre", producto.Nombre);
-    cmd.Parameters.AddWithValue("@Descripcion", producto.Descripcion);
-    cmd.Parameters.AddWithValue("@Precio", producto.Precio);
-    cmd.Parameters.AddWithValue("@Stock", producto.Stock);
-    cmd.Parameters.AddWithValue("@Imagen", producto.Imagen);
-    cmd.Parameters.AddWithValue("@Categoria", producto.IdCategoria);
-    cmd.Parameters.AddWithValue("@Marca", producto.IdMarca);
-    cmd.Parameters.AddWithValue("@Proveedor", producto.IdProveedor);
+        FROM Productos
 
-    cmd.ExecuteNonQuery();
+        WHERE IdProducto=@Id";
+
+        using var cmd = new SqlCommand(sql, conexion);
+
+        cmd.Parameters.AddWithValue("@Id", id);
+
+        using var lector = cmd.ExecuteReader();
+
+        if (!lector.Read())
+        {
+            return Results.NotFound(new
+            {
+                mensaje = "Producto no encontrado."
+            });
+        }
 
     return Results.Ok(new
     {
-        mensaje = "Producto agregado correctamente."
+        id = Convert.ToInt32(lector["IdProducto"]),
+        nombre = lector["Nombre"].ToString(),
+        descripcion = lector["Descripcion"].ToString(),
+        precio = Convert.ToDecimal(lector["Precio"]),
+        stock = Convert.ToInt32(lector["Stock"]),
+        imagen = lector["Imagen"].ToString(),
+        categoria = Convert.ToInt32(lector["IdCategoria"]),
+        marca = Convert.ToInt32(lector["IdMarca"]),
+        proveedor = Convert.ToInt32(lector["IdProveedor"])
     });
+    }
+    catch(Exception ex)
+    {
+        return Results.BadRequest(new
+        {
+            mensaje = ex.Message
+        });
+    }
 
 });
 
@@ -238,168 +491,165 @@ app.MapPut("/api/producto/{id}",
 ProductoDTO producto,
 ConexionDB db) =>
 {
-
-    using var conexion = db.GetConexion();
-
-    conexion.Open();
-
-    string existeSql =
-    "SELECT COUNT(*) FROM Productos WHERE IdProducto=@Id";
-
-    using var existeCmd =
-        new SqlCommand(existeSql, conexion);
-
-    existeCmd.Parameters.AddWithValue("@Id", id);
-
-    int existe = (int)existeCmd.ExecuteScalar();
-
-    if (existe == 0)
+    try
     {
-        return Results.NotFound(new
+        using var conexion = db.GetConexion();
+
+        conexion.Open();
+
+        string sql = @"
+
+        UPDATE Productos
+
+        SET
+
+            Nombre=@Nombre,
+
+            Descripcion=@Descripcion,
+
+            Precio=@Precio,
+
+            Stock=@Stock,
+
+            Imagen=@Imagen,
+
+            IdCategoria=@Categoria,
+
+            IdMarca=@Marca,
+
+            IdProveedor=@Proveedor
+
+        WHERE IdProducto=@Id";
+
+        using var cmd =
+            new SqlCommand(sql, conexion);
+
+        cmd.Parameters.AddWithValue("@Id", id);
+        cmd.Parameters.AddWithValue("@Nombre", producto.Nombre);
+        cmd.Parameters.AddWithValue("@Descripcion", producto.Descripcion);
+        cmd.Parameters.AddWithValue("@Precio", producto.Precio);
+        cmd.Parameters.AddWithValue("@Stock", producto.Stock);
+        cmd.Parameters.AddWithValue("@Imagen", producto.Imagen);
+        cmd.Parameters.AddWithValue("@Categoria", producto.IdCategoria);
+        cmd.Parameters.AddWithValue("@Marca", producto.IdMarca);
+        cmd.Parameters.AddWithValue("@Proveedor", producto.IdProveedor);
+
+        cmd.ExecuteNonQuery();
+
+        return Results.Ok(new
         {
-            mensaje = "Producto no encontrado."
+            mensaje = "Producto actualizado."
+        });
+
+    }
+    catch (Exception ex)
+    {
+        return Results.BadRequest(new
+        {
+            mensaje = ex.Message
         });
     }
-
-    string sql =
-    @"UPDATE Productos
-
-    SET
-
-    Nombre=@Nombre,
-
-    Descripcion=@Descripcion,
-
-    Precio=@Precio,
-
-    Stock=@Stock,
-
-    Imagen=@Imagen,
-
-    IdCategoria=@Categoria,
-
-    IdMarca=@Marca,
-
-    IdProveedor=@Proveedor
-
-    WHERE IdProducto=@Id";
-
-    using var cmd = new SqlCommand(sql, conexion);
-
-    cmd.Parameters.AddWithValue("@Id", id);
-    cmd.Parameters.AddWithValue("@Nombre", producto.Nombre);
-    cmd.Parameters.AddWithValue("@Descripcion", producto.Descripcion);
-    cmd.Parameters.AddWithValue("@Precio", producto.Precio);
-    cmd.Parameters.AddWithValue("@Stock", producto.Stock);
-    cmd.Parameters.AddWithValue("@Imagen", producto.Imagen);
-    cmd.Parameters.AddWithValue("@Categoria", producto.IdCategoria);
-    cmd.Parameters.AddWithValue("@Marca", producto.IdMarca);
-    cmd.Parameters.AddWithValue("@Proveedor", producto.IdProveedor);
-
-    cmd.ExecuteNonQuery();
-
-    return Results.Ok(new
-    {
-        mensaje = "Producto actualizado."
-    });
 
 });
 
 app.MapDelete("/api/producto/{id}",
 
-(int id, ConexionDB db) =>
+(int id,
+ConexionDB db) =>
 {
-
-    using var conexion = db.GetConexion();
-
-    conexion.Open();
-
-    string existeSql =
-    "SELECT COUNT(*) FROM Productos WHERE IdProducto=@Id";
-
-    using var existeCmd =
-        new SqlCommand(existeSql, conexion);
-
-    existeCmd.Parameters.AddWithValue("@Id", id);
-
-    int existe = (int)existeCmd.ExecuteScalar();
-
-    if (existe == 0)
+    try
     {
-        return Results.NotFound(new
+        using var conexion = db.GetConexion();
+
+        conexion.Open();
+
+        string sql = @"
+
+        UPDATE Productos
+
+        SET Estado=0
+
+        WHERE IdProducto=@Id";
+
+        using var cmd =
+            new SqlCommand(sql, conexion);
+
+        cmd.Parameters.AddWithValue("@Id", id);
+
+        cmd.ExecuteNonQuery();
+
+        return Results.Ok(new
         {
-            mensaje = "Producto no encontrado."
+            mensaje = "Producto eliminado."
+        });
+
+    }
+    catch (Exception ex)
+    {
+        return Results.BadRequest(new
+        {
+            mensaje = ex.Message
         });
     }
-
-    string sql =
-    @"UPDATE Productos
-
-      SET Estado = 0
-
-      WHERE IdProducto=@Id";
-
-    using var cmd =
-        new SqlCommand(sql, conexion);
-
-    cmd.Parameters.AddWithValue("@Id", id);
-
-    cmd.ExecuteNonQuery();
-
-    return Results.Ok(new
-    {
-        mensaje = "Producto eliminado."
-    });
 
 });
 
-app.MapGet("/api/producto/{id}",
-
-(int id, ConexionDB db) =>
+app.MapGet("/api/dashboard", (ConexionDB db) =>
 {
-
-    using var conexion = db.GetConexion();
-
-    conexion.Open();
-
-    string sql =
-    @"SELECT *
-
-      FROM Productos
-
-      WHERE IdProducto=@Id
-
-      AND Estado=1";
-
-    using var cmd =
-        new SqlCommand(sql, conexion);
-
-    cmd.Parameters.AddWithValue("@Id", id);
-
-    using var lector =
-        cmd.ExecuteReader();
-
-    if (!lector.Read())
+    try
     {
-        return Results.NotFound(new
+        using var conexion = db.GetConexion();
+
+        conexion.Open();
+
+        int productos;
+        int categorias;
+        int marcas;
+        int usuarios;
+
+        using (var cmd = new SqlCommand(
+            "SELECT COUNT(*) FROM Productos WHERE Estado = 1",
+            conexion))
         {
-            mensaje = "Producto no encontrado."
+            productos = Convert.ToInt32(cmd.ExecuteScalar());
+        }
+
+        using (var cmd = new SqlCommand(
+            "SELECT COUNT(*) FROM Categorias",
+            conexion))
+        {
+            categorias = Convert.ToInt32(cmd.ExecuteScalar());
+        }
+
+        using (var cmd = new SqlCommand(
+            "SELECT COUNT(*) FROM Marcas",
+            conexion))
+        {
+            marcas = Convert.ToInt32(cmd.ExecuteScalar());
+        }
+
+        using (var cmd = new SqlCommand(
+            "SELECT COUNT(*) FROM Usuario WHERE Activo = 1",
+            conexion))
+        {
+            usuarios = Convert.ToInt32(cmd.ExecuteScalar());
+        }
+
+        return Results.Ok(new
+        {
+            productos,
+            categorias,
+            marcas,
+            usuarios
         });
     }
-
-    return Results.Ok(new
+    catch (Exception ex)
     {
-        id = lector["IdProducto"],
-        nombre = lector["Nombre"],
-        descripcion = lector["Descripcion"],
-        precio = lector["Precio"],
-        stock = lector["Stock"],
-        imagen = lector["Imagen"],
-        categoria = lector["IdCategoria"],
-        marca = lector["IdMarca"],
-        proveedor = lector["IdProveedor"]
-    });
-
+        return Results.BadRequest(new
+        {
+            mensaje = ex.Message
+        });
+    }
 });
 
 app.Run();

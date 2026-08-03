@@ -1,6 +1,6 @@
 public record LoginDTO
 (
-    string Correo,
+    string Usuario,
 
     string Contrasena
 );
