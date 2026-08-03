@@ -1,21 +1,28 @@
 <!DOCTYPE html>
+
 <html lang="es">
 
 <head>
 
     <meta charset="UTF-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
-    <title>Sesión</title>
+    <title>Iniciar sesión | Duck-EE</title>
 
-    <link rel="stylesheet" href="css/estilo-admin.css">
+    <link rel="stylesheet"
+          href="css/estilo-admin.css">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
 
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Edu+AU+VIC+WA+NT+Guides:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Edu+AU+VIC+WA+NT+Guides:wght@500&display=swap"
+          rel="stylesheet">
 
 </head>
 
@@ -23,28 +30,47 @@
 
 <div class="registro-container">
 
-    <h2 class="form-title">Duck-EE</h2>
+    <h2 class="form-title">
+
+        Duck-EE
+
+    </h2>
 
     <form id="loginForm">
 
+        <!-- Usuario -->
+
         <div class="form-group">
 
-            <label for="txt-correo">Correo:</label>
+            <label for="txt-usuario">
+
+                Usuario
+
+            </label>
 
             <input
-                type="email"
-                id="txt-correo"
+                type="text"
+                id="txt-usuario"
+                maxlength="30"
+                placeholder="Ingresa tu usuario"
                 required>
 
         </div>
 
+        <!-- Contraseña -->
+
         <div class="form-group">
 
-            <label for="txt-contrasena">Contraseña:</label>
+            <label for="txt-contrasena">
+
+                Contraseña
+
+            </label>
 
             <input
                 type="password"
                 id="txt-contrasena"
+                placeholder="********"
                 required>
 
         </div>
@@ -55,13 +81,17 @@
                 type="submit"
                 class="btn-register">
 
-                Iniciar Sesión
+                Iniciar sesión
 
             </button>
 
         </div>
 
         <div class="link-crear">
+
+            ¿No tienes cuenta?
+
+            <br><br>
 
             <a href="crear.html">
 

@@ -1,59 +1,68 @@
-document
-.getElementById("loginForm")
-.addEventListener("submit", async (e) => {
+const API = "http://localhost:5129/api";
 
-e.preventDefault();
+const formulario = document.getElementById("loginForm");
 
-const usuario = {
+formulario.addEventListener("submit", async (e) => {
 
-correo:
-document.getElementById("txt-correo").value,
+    e.preventDefault();
 
-contrasena:
-document.getElementById("txt-contrasena").value
+    const usuario = document.getElementById("txt-usuario").value.trim();
 
-};
+    const contrasena = document.getElementById("txt-contrasena").value;
 
-try{
+    if (usuario === "" || contrasena === "") {
 
-const respuesta = await fetch("http://localhost:5129/api/login", {
+        alert("Completa todos los campos.");
 
-    method: "POST",
+        return;
 
-    headers: {
-        "Content-Type": "application/json"
-    },
+    }
 
-    body: JSON.stringify(usuario)
+    try {
 
-});
+        const respuesta = await fetch(`${API}/login`, {
 
-const datos =
-await respuesta.json();
+            method: "POST",
 
-if(!respuesta.ok){
+            headers: {
+                "Content-Type": "application/json"
+            },
 
-alert(datos.mensaje);
+            body: JSON.stringify({
 
-return;
+                usuario: usuario,
 
-}
+                contrasena: contrasena
 
-localStorage.setItem("idUsuario",datos.id);
+            })
 
-localStorage.setItem("correo",datos.correo);
+        });
 
-localStorage.setItem("rol",datos.rol);
+        const datos = await respuesta.json();
 
-window.location.href="tienda.html";
+        if (!respuesta.ok) {
 
-}
-catch(error){
+            alert(datos.mensaje);
 
-console.error(error);
+            return;
 
-alert("No fue posible conectar con el servidor.");
+        }
 
-}
+        localStorage.setItem("idUsuario", datos.id);
+        localStorage.setItem("usuario", datos.usuario);
+        localStorage.setItem("correo", datos.correo);
+        localStorage.setItem("rol", datos.rol);
+        localStorage.setItem("fotoPerfil", datos.fotoPerfil);
+
+        window.location.href = "tienda.html";
+
+    }
+    catch (error) {
+
+        console.error(error);
+
+        alert("No fue posible conectar con el servidor.");
+
+    }
 
 });

@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>
+
+        Duck-EE | Administración de Productos
+
+    </title>
+
+    <link rel="stylesheet"
+          href="css/estilo-tienda.css">
+
+    <link rel="stylesheet"
+          href="css/estilo-producto.css">
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap"
+          rel="stylesheet">
+
+</head>
+
+<body>
+
+<header class="header">
+
+    <a href="perfil.html"
+       class="logo">
+
+        DUCK-EE
+
+    </a>
+
+    <nav class="navigation">
+
+        <ul>
+
+            <li>
+
+                <a href="perfil.html">
+
+                    Volver al Perfil
+
+                </a>
+
+            </li>
+
+        </ul>
+
+    </nav>
+
+</header>
+
+<main class="contenedor">
+
+        <section class="cabecera">
+
+            <div>
+
+                <h1>
+
+                    Administración de Productos
+
+                </h1>
+
+            </div>
+
+            <button
+                id="nuevoProducto"
+                class="btn-principal">
+
+                Nuevo Producto
+
+            </button>
+
+        </section>
+
+        <section class="acciones">
+
+            <input
+
+                type="text"
+
+                id="buscarProducto"
+
+                placeholder="Buscar producto...">
+
+        </section>
+
+        <section class="tabla-contenedor">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>ID</th>
+
+                        <th>Imagen</th>
+
+                        <th>Nombre</th>
+
+                        <th>Precio</th>
+
+                        <th>Stock</th>
+
+                        <th>Categoría</th>
+
+                        <th>Acciones</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="tablaProductos">
+
+                </tbody>
+
+            </table>
+
+        </section>
+    <!--====================================
+            MODAL PRODUCTO
+    =====================================-->
+
+    <div id="modalProducto" class="modal">
+
+        <div class="modal-contenido">
+
+            <div class="modal-header">
+
+                <h2 id="tituloModal">
+
+                    Agregar Producto
+
+                </h2>
+
+                <button
+                    id="cerrarModal"
+                    class="btn-cerrar">
+
+                    ✕
+
+                </button>
+
+            </div>
+
+            <form id="formProducto">
+
+                <input
+                    type="hidden"
+                    id="productoId">
+
+                <!-- FILA 1 -->
+
+                <div class="fila">
+
+                    <div class="campo">
+
+                        <label>
+
+                            Nombre del producto
+
+                        </label>
+
+                        <input
+                            type="text"
+                            id="nombreProducto"
+                            placeholder="Ej. Pato Vaquero"
+                            required>
+
+                    </div>
+
+                    <div class="campo">
+
+                        <label>
+
+                            Precio
+
+                        </label>
+
+                        <input
+                            type="number"
+                            id="precioProducto"
+                            min="0"
+                            step="0.01"
+                            required>
+
+                    </div>
+
+                </div>
+
+                <!-- FILA 2 -->
+
+                <div class="fila">
+
+                    <div class="campo">
+
+                        <label>
+
+                            Stock
+
+                        </label>
+
+                        <input
+                            type="number"
+                            id="stockProducto"
+                            min="0"
+                            required>
+
+                    </div>
+
+                    <div class="campo">
+
+                        <label>
+
+                            Categoría
+
+                        </label>
+
+                        <select id="categoriaProducto">
+
+                            <option value="1">
+
+                                Patos
+
+                            </option>
+
+                            <option value="2">
+
+                                Accesorios
+
+                            </option>
+
+                            <option value="3">
+
+                                Peluches
+
+                            </option>
+
+                            <option value="4">
+
+                                Coleccionables
+
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+                <!-- FILA 3 -->
+
+                <div class="fila">
+
+                    <div class="campo">
+
+                        <label>
+
+                            Marca
+
+                        </label>
+
+                        <select id="marcaProducto">
+
+                            <option value="1">
+
+                                Duck-EE
+
+                            </option>
+
+                            <option value="2">
+
+                                Genérica
+
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="campo">
+
+                        <label>
+
+                            Proveedor
+
+                        </label>
+
+                        <select id="proveedorProducto">
+
+                            <option value="1">
+
+                                Principal
+
+                            </option>
+
+                            <option value="2">
+
+                                Secundario
+
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+                <!-- DESCRIPCIÓN -->
+
+                <div class="campo">
+
+                    <label>
+
+                        Descripción
+
+                    </label>
+
+                    <textarea
+
+                        id="descripcionProducto"
+
+                        rows="5"
+
+                        placeholder="Describe el producto...">
+
+                    </textarea>
+
+                </div>
+
+                <!-- IMAGEN -->
+
+                <div class="campo">
+
+                    <label>
+
+                        Imagen
+
+                    </label>
+
+                    <input
+
+                        type="file"
+
+                        id="archivoImagen"
+
+                        accept="image/*">
+
+                </div>
+
+                <div class="preview">
+
+                    <img
+
+                        id="previewProducto"
+
+                        src="images/productos/default.png"
+
+                        alt="Vista previa">
+
+                </div>
+
+                <div class="botones-modal">
+
+                    <button
+
+                        type="button"
+
+                        id="cancelarProducto"
+
+                        class="btn-secundario">
+
+                        Cancelar
+
+                    </button>
+
+                    <button
+
+                        type="submit"
+
+                        id="guardarProducto"
+
+                        class="btn-principal">
+
+                        Guardar Producto
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+</main>
+
+<footer class="footer-admin">
+
+    <p>
+
+        © 2026 Duck-EE | Panel de Administración
+
+    </p>
+
+</footer>
+
+<script src="js/producto.js"></script>
+
+</body>
+
+</html>    

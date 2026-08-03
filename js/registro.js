@@ -1,54 +1,71 @@
-document
-.getElementById("registroForm")
-.addEventListener("submit", async (e)=>{
+const API = "http://localhost:5129/api";
 
-e.preventDefault();
+const formulario = document.getElementById("registroForm");
 
-const usuario={
+formulario.addEventListener("submit", async (e) => {
 
-correo:
-document.getElementById("txt-correo").value,
+    e.preventDefault();
 
-contrasena:
-document.getElementById("txt-contrasena").value
+    const usuario = document.getElementById("txt-usuario").value.trim();
 
-};
+    const correo = document.getElementById("txt-correo").value.trim();
 
-try{
+    const contrasena = document.getElementById("txt-contrasena").value;
 
-const respuesta =
-await fetch("http://localhost:5129/api/registro", {
+    if (usuario === "" || correo === "" || contrasena === "") {
 
-method:"POST",
+        alert("Completa todos los campos.");
 
-headers:{
+        return;
 
-"Content-Type":"application/json"
+    }
 
-},
+    try {
 
-body:JSON.stringify(usuario)
+        const respuesta = await fetch(`${API}/registro`, {
 
-});
+            method: "POST",
 
-const datos=
-await respuesta.json();
+            headers: {
 
-alert(datos.mensaje);
+                "Content-Type": "application/json"
 
-if(respuesta.ok){
+            },
 
-window.location.href="sesion.html";
+            body: JSON.stringify({
 
-}
+                usuario: usuario,
 
-}
-catch(error){
+                correo: correo,
 
-console.error(error);
+                contrasena: contrasena
 
-alert("No fue posible conectar con el servidor.");
+            })
 
-}
+        });
+
+        const datos = await respuesta.json();
+
+        if (!respuesta.ok) {
+
+            alert(datos.mensaje);
+
+            return;
+
+        }
+
+        alert("Cuenta creada correctamente.");
+
+        window.location.href = "sesion.html";
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        alert("No fue posible conectar con el servidor.");
+
+    }
 
 });

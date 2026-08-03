@@ -1,26 +1,21 @@
 <!DOCTYPE html>
-
 <html lang="es">
 
 <head>
 
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
 
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Crear cuenta</title>
+    <title>Crear cuenta | Duck-EE</title>
 
-<link rel="stylesheet" href="css/estilo-admin.css">
+    <link rel="stylesheet" href="css/estilo-admin.css">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
 
-<link rel="preconnect"
-href="https://fonts.gstatic.com"
-crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Edu+AU+VIC+WA+NT+Guides:wght@500&display=swap"
-rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Edu+AU+VIC+WA+NT+Guides:wght@500&display=swap" rel="stylesheet">
 
 </head>
 
@@ -28,67 +23,96 @@ rel="stylesheet">
 
 <div class="registro-container">
 
-<h2 class="form-title">
+    <h2 class="form-title">
 
-Duck-EE
+        Duck-EE
 
-</h2>
+    </h2>
 
-<form id="registroForm">
+    <form id="registroForm">
 
-<div class="form-group">
+        <!-- Usuario -->
 
-<label for="txt-correo">
+        <div class="form-group">
 
-Correo:
+            <label for="txt-usuario">
 
-</label>
+                Usuario
 
-<input
-type="email"
-id="txt-correo"
-required>
+            </label>
 
-</div>
+            <input
+                type="text"
+                id="txt-usuario"
+                maxlength="30"
+                placeholder="Ej. usuario123"
+                required>
 
-<div class="form-group">
+        </div>
 
-<label for="txt-contrasena">
+        <!-- Correo -->
 
-Contraseña:
+        <div class="form-group">
 
-</label>
+            <label for="txt-correo">
 
-<input
-type="password"
-id="txt-contrasena"
-required>
+                Correo
 
-</div>
+            </label>
 
-<div class="btn-register-container">
+            <input
+                type="email"
+                id="txt-correo"
+                placeholder="correo@ejemplo.com"
+                required>
 
-<button
-type="submit"
-class="btn-register">
+        </div>
 
-Crear cuenta
+        <!-- Contraseña -->
 
-</button>
+        <div class="form-group">
 
-</div>
+            <label for="txt-contrasena">
 
-<div class="link-crear">
+                Contraseña
 
-<a href="sesion.html">
+            </label>
 
-<b>Iniciar sesión</b>
+            <input
+                type="password"
+                id="txt-contrasena"
+                placeholder="********"
+                required>
 
-</a>
+        </div>
 
-</div>
+        <div class="btn-register-container">
 
-</form>
+            <button
+                type="submit"
+                class="btn-register">
+
+                Crear cuenta
+
+            </button>
+
+        </div>
+
+        <div class="link-crear">
+
+            ¿Ya tienes cuenta?
+
+            <br><br>
+
+            <a href="sesion.html">
+
+                <b>Iniciar sesión</b>
+
+            </a>
+
+        </div>
+
+    </form>
 
 </div>
 

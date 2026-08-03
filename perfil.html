@@ -1,93 +1,375 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Duck-ee | Catálogo</title>
-    <link rel="stylesheet" href="css/estilo-tienda.css">
-    <!-- Fuente -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Edu+AU+VIC+WA+NT+Guides:wght@500&display=swap" rel="stylesheet">
-</head>
-<body>
-    <!-- ================= HEADER ================= -->
-    <header class="header">
-        <a href="tienda.html" class="logo">
-            DUCK-EE
-        </a>
-        <!--<input type="checkbox" id="toggle">
-        <label for="toggle" class="menu-btn">
-            <img src="images/images/menu.png" alt="Menú">
-        </label> -->
-        <nav class="navigation">
-            <ul>
-                <li>
-                    <a href="tienda.html">Inicio</a>
-                </li>
-                <li>
-                    <a href="juguetes.html">Juguetes</a>
-                </li>
-                <li>
-                    <a href="categorias.html">Categorías</a>
-                </li>
-                <li>
-                    <a href="us.html">Sobre Nosotros</a>
-                </li>
-                <li>
-                    <a href="perfil.html" id="nom_tienda"><b>Perfil</b></a>
-                </li>
-            </ul>
-        </nav>
-    </header>
-    <main>
-        <h2 id="saludo-perfil">Perfil</h2>
 
-            <div class="cosas">
-                <h2> Observa los articulos que has visitado recientemente! </h2>
-                <br>
-                <ul>
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Duck-EE | Perfil</title>
+
+    <link rel="stylesheet"
+          href="css/estilo-tienda.css">
+
+    <link rel="stylesheet"
+          href="css/estilo-perfil.css">
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Edu+AU+VIC+WA+NT+Guides:wght@500&display=swap"
+          rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap"
+          rel="stylesheet">
+
+</head>
+
+<body>
+
+<header class="header">
+
+    <a href="tienda.html" class="logo">
+
+        DUCK-EE
+
+    </a>
+
+    <nav class="navigation">
+
+        <ul>
+
             <li>
-                <a href="/datos/figuras/figura7.html"><img src="../images/Juguetes/Figuras/Figura Bluey.jpg"></a>
+
+                <a href="juguetes.html">Juguetes</a>
+
             </li>
+
             <li>
-                <a href="/datos/peluches/peluche7.html"><img src="../images/Juguetes/Peluches/Peluche Teto.jpg"></a>
+
+                <a href="categorias.html">Categorías</a>
+
             </li>
+
             <li>
-                <a href="/datos/figuras/figura9.html"><img src="../images/Juguetes/Figuras/Figura Chiikawa carro.webp"></a>
+
+                <a href="us.html">Sobre Nosotros</a>
+
             </li>
+
             <li>
-                <a href="/datos/patos/pato5.html"><img src="../images/Juguetes/Patos/leonpato.jpg"></a>
+
+                <a href="perfil.html"><b>Perfil</b></a>
+
             </li>
+
         </ul>
 
-                <br>
-                <br>
+    </nav>
 
-                <button id="btn-cerrar-sesion">Cerrar sesión</button>
+</header>
+
+<main class="perfil">
+
+    <!-- MENÚ IZQUIERDO -->
+
+    <aside class="menu-perfil">
+
+        <h2>
+
+            Mi cuenta
+
+        </h2>
+
+        <div class="avatar">
+
+            <img src="images/productos/default.png"
+                alt="Perfil">
+
+        </div>
+
+        <button class="menu-btn activo"
+                data-tab="inicio">
+
+            Inicio
+
+        </button>
+
+        <button class="menu-btn"
+                data-tab="editar">
+
+            Editar perfil
+
+        </button>
+
+        <button class="menu-btn"
+                data-tab="configuracion">
+
+            Configuración
+
+        </button>
+
+        <button class="menu-btn"
+                data-tab="vistos">
+
+            Productos vistos
+
+        </button>
+
+        <button class="menu-btn"
+                data-tab="ubicaciones">
+
+            Ubicaciones
+
+        </button>
+
+        <button class="menu-btn"
+                data-tab="mercado">
+
+            Mercado
+
+        </button>
+
+        <hr>
+
+        <button id="cerrarSesion"
+                class="menu-btn salir">
+
+            <a href="sesion.html">Cerrar sesión</a>
+
+        </button>
+
+    </aside>
+
+    <!-- PANEL DERECHO -->
+
+    <section class="contenido-perfil">
+
+        <!-- INICIO -->
+
+        <div class="tab activa"
+             id="inicio">
+
+            <h2>
+
+                Bienvenido
+
+            </h2>
+
+            <p>
+
+                Correo:
+
+                <span id="correoPerfil"></span>
+
+            </p>
+
+            <p>
+
+                Rol:
+
+                <span id="rol"></span>
+
+            </p>
+
+            <p>
+
+                Estado:
+
+                Activo
+
+            </p>
+
+        </div>
+
+        <!-- EDITAR -->
+
+        <div class="tab"
+             id="editar">
+
+            <h2>
+
+                Editar perfil
+
+            </h2>
+
+            <div class="form-group">
+
+                <label>
+
+                    Correo
+
+                </label>
+
+                <input id="nuevoCorreo">
+
             </div>
 
-        <script>
-            // Mostramos el nombre guardado; si no hay sesion, regresamos al login.
-            const usuario = localStorage.getItem("usuario");
-            if (usuario) {
-                document.getElementById("saludo-perfil").textContent = "Hola, " + usuario + ". Bienvenido a tu Perfil.";
-            } else {
-                window.location.href = "sesion.html";
-            }
-            </script>
+            <div class="form-group">
 
-            <script>
-            // Cerrar sesion: borramos el usuario y volvemos a la tienda.
-            document.getElementById("btn-cerrar-sesion").addEventListener("click", function () {
-                localStorage.removeItem("usuario");
-                window.location.href = "tienda.html";
-            });
-        </script>
-    </main>
-    <footer class="footer">
-        <p><a href="https://www.instagram.com/duckee.company/">Contacto</a></p>
-        <p>© 2026 Duck-ee. Todos los derechos reservados.</p>
-    </footer>
+                <label>
+
+                    Nueva contraseña
+
+                </label>
+
+                <input
+                    id="nuevaContrasena"
+                    type="password">
+
+            </div>
+
+            <button id="guardarPerfil">
+
+                Guardar cambios
+
+            </button>
+
+        </div>
+
+        <!-- CONFIGURACIÓN -->
+
+        <div class="tab"
+             id="configuracion">
+
+            <h2>
+
+                Configuración
+
+            </h2>
+
+            <p>
+
+                Próximamente podrás cambiar el tema,
+                idioma y otras opciones.
+
+            </p>
+
+        </div>
+
+        <!-- PRODUCTOS -->
+
+        <div class="tab"
+             id="vistos">
+
+            <h2>
+
+                Productos vistos
+
+            </h2>
+
+            <div id="listaVistos">
+
+            </div>
+
+        </div>
+
+        <!-- UBICACIONES -->
+
+        <div class="tab"
+             id="ubicaciones">
+
+            <h2>
+
+                Mis ubicaciones
+
+            </h2>
+
+            <button>
+
+                Agregar dirección
+
+            </button>
+
+            <div id="listaUbicaciones">
+
+            </div>
+
+        </div>
+
+        <!-- MERCADO -->
+
+    <div class="tab" id="mercado">
+
+    <h2>Panel del vendedor</h2>
+
+    <p>
+        Desde aquí podrás administrar completamente el catálogo de Duck-EE.
+    </p>
+
+    <div class="estadisticas-vendedor">
+
+        <div class="mini-card">
+
+            <h3>Productos</h3>
+
+            <h1 id="totalProductos">0</h1>
+
+        </div>
+
+        <div class="mini-card">
+
+            <h3>Categorías</h3>
+
+            <h1 id="totalCategorias">0</h1>
+
+        </div>
+
+        <div class="mini-card">
+
+            <h3>Marcas</h3>
+
+            <h1 id="totalMarcas">0</h1>
+
+        </div>
+
+        <div class="mini-card">
+
+            <h3>Usuarios</h3>
+
+            <h1 id="totalUsuarios">0</h1>
+
+        </div>
+
+    </div>
+
+        <button onclick="location.href='producto.html'">
+
+            Administrar Productos
+
+        </button>
+
+        <button onclick="location.href='proveedores.html'">
+
+            Proveedores
+
+        </button>
+
+    </div>
+
+    </section>
+
+</main>
+
+<footer class="footer">
+
+    <p>
+
+        © 2026 Duck-EE
+
+    </p>
+
+</footer>
+
+<script src="js/perfil.js"></script>
+<script src="js/producto.js"></script>
+
 </body>
+
 </html>

@@ -1,109 +1,155 @@
 body{
     background: url(/images/images/Patitos.png);
     background-size: cover;
+    background-position: center;
     font-family: 'Edu Australia VIC WA NT Hand Guides', cursive;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    margin:0;
 }
 
-h1 {
-    font-family: 'Edu Australia VIC WA NT Hand Guides', cursive;
-    font-size: 38px;
-    font-weight: 500;
+h1{
+    font-family:'Edu AU VIC WA NT Guides', cursive;
+    font-size:38px;
+    font-weight:500;
 }
 
-.registro-container {
-    background-color: #FFFCEE;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 30px;
-    width: 320px;
-    box-sizing:border-box;
-    position: relative;
-    border-radius: 9px;
-    box-shadow: 0 8px 15px rgba(0,0,0,.15);
-}  
+.registro-container{
 
-.form-title {
-    font-family: 'Edu AU VIC WA NT Guides', cursive;
-    font-size: 38px;
-    font-weight: 500;
-    text-align: center;
+    background:#FFFCEE;
+
+    width:360px;
+
+    padding:35px;
+
+    border-radius:12px;
+
+    box-shadow:0 8px 15px rgba(0,0,0,.15);
+
 }
 
-.label{
-    display: block;
-    margin-bottom: 5px;
-    color: #000000;
-    font-size: 14px;
-    font-weight: bold;
+.form-title{
+
+    font-family:'Edu AU VIC WA NT Guides', cursive;
+
+    font-size:40px;
+
+    text-align:center;
+
+    margin-bottom:25px;
+
+}
+
+.form-group{
+
+    margin-bottom:18px;
+
+}
+
+.form-group label{
+
+    display:block;
+
+    margin-bottom:8px;
+
+    font-size:16px;
+
+    font-weight:bold;
+
+    color:#333;
+
 }
 
 input[type="text"],
+input[type="email"],
 input[type="password"]{
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    box-sizing: border-box;
-    font-size: 16px;
+
+    width:100%;
+
+    padding:12px;
+
+    border:2px solid #DDD;
+
+    border-radius:8px;
+
+    box-sizing:border-box;
+
+    font-size:15px;
+
+    transition:.25s;
+
+    outline:none;
+
 }
 
-.input-group{
-    border-color: #D4AF37;
-    outline: none;
-}
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus{
 
-.input:focus{
-    border-color: #D4AF37;
-    outline: none;
-}
-.radio-group{
-    padding-top: 4px;
-}
+    border-color:#D4AF37;
 
-.radio-label{
-    display:inline-block;
-    margin-bottom: 10px;
-    font-weight: normal;
-    font-size: 12px;
-    color: #473030;
+    box-shadow:0 0 8px rgba(212,175,55,.30);
+
 }
 
 .btn-register-container{
-    width: 100%;
-    padding-top : 15px;
-    border-radius: 5px;
+
+    margin-top:25px;
+
 }
 
 .btn-register{
-    width: 100%;
-    background-color: #D4AF37;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: bold;
-    cursor: pointer;
-    padding: 10px;
-    align-items: center;
+
+    width:100%;
+
+    padding:12px;
+
+    background:#D4AF37;
+
+    color:white;
+
+    border:none;
+
+    border-radius:8px;
+
+    font-size:16px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.25s;
+
 }
 
 .btn-register:hover{
-    background-color: #cfaa2f;
+
+    background:#c79d1f;
+
 }
 
-.link-crear {
-    color:#cfaa2f;
-    text-align: center;
-    padding: 10px;
+.link-crear{
+
+    text-align:center;
+
+    margin-top:20px;
+
 }
 
-.link-crear a {
-    color:#cfaa2f;
+.link-crear a{
+
+    color:#D4AF37;
+
+    text-decoration:none;
+
+    font-weight:bold;
+
+}
+
+.link-crear a:hover{
+
+    text-decoration:underline;
+
 }
