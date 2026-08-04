@@ -772,19 +772,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\josel\\.nuget\\packages\\": {}
+    "C:\\Users\\kikir\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\josel\\Downloads\\PiCatalogoFinal-main\\PiCatalogoFinal\\DuckEEAPI\\DuckEEAPI.csproj",
+      "projectUniqueName": "C:\\Users\\kikir\\Downloads\\PICatalogo-PI\\PICatalogo-PI\\DuckEEAPI\\DuckEEAPI.csproj",
       "projectName": "DuckEEAPI",
-      "projectPath": "c:\\Users\\josel\\Downloads\\PiCatalogoFinal-main\\PiCatalogoFinal\\DuckEEAPI\\DuckEEAPI.csproj",
-      "packagesPath": "C:\\Users\\josel\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\josel\\Downloads\\PiCatalogoFinal-main\\PiCatalogoFinal\\DuckEEAPI\\obj\\",
+      "projectPath": "C:\\Users\\kikir\\Downloads\\PICatalogo-PI\\PICatalogo-PI\\DuckEEAPI\\DuckEEAPI.csproj",
+      "packagesPath": "C:\\Users\\kikir\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\kikir\\Downloads\\PICatalogo-PI\\PICatalogo-PI\\DuckEEAPI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\josel\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\kikir\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -840,7 +840,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.102/PortableRuntimeIdentifierGraph.json",
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.110/PortableRuntimeIdentifierGraph.json",
         "packagesToPrune": {
           "Microsoft.AspNetCore": "(,10.0.32767]",
           "Microsoft.AspNetCore.Antiforgery": "(,10.0.32767]",
