@@ -16,11 +16,20 @@ body{
 
 }
 
+.a {
+    font-family:"Itim", cursive;
+    font-weight:500;
+    color:#333;
+    margin:90px 0 0 0;
+    padding-left:5%;
+    font-size:30px;
+}
+
 .perfil{
 
-    width:min(95%,1400px);
+    width:min(95%,1300px);
 
-    margin:120px auto 40px;
+    margin:20px auto 40px;
 
     display:flex;
 
@@ -50,7 +59,7 @@ body{
 
     padding:0;
 
-    margin-bottom:20px;
+    margin-bottom: 20px;
 
     font-size:30px;
 
@@ -92,6 +101,31 @@ body{
 
 .menu-btn{
 
+    width:100%;
+
+    margin:10px 0;
+
+    padding:12px;
+
+    border:none;
+
+    border-radius:15px;
+
+    background:#F4E8D4;
+
+    cursor:pointer;
+
+    font-family:"Itim", cursive;
+
+    font-size:18px;
+
+    transition:.25s;
+
+}
+
+.menu-btn-salir{
+
+    color: black;
     width:100%;
 
     margin:10px 0;
@@ -456,6 +490,7 @@ body{
     font-size:28px;
 
     cursor:pointer;
+    
 
 }
 

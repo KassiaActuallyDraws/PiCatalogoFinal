@@ -192,7 +192,7 @@ document.getElementById("cerrarSesion").onclick=()=>{
 
         localStorage.clear();
 
-        location.href="sesion.html";
+        location.href="tienda.html";
 
     }
 
