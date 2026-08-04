@@ -342,6 +342,7 @@ input[type=text]:focus {
 .container input::placeholder{
     color: white;
     opacity: 1;
+    font-family: Irim, cursive;
 }
 
 .container input{
