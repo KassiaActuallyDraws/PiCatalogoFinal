@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Duck-ee | Catálogo</title>
     <link rel="stylesheet" href="../css/estilo-tienda.css">
-    <script src="../js/buscar.js"></script>
     <!-- Fuente -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,7 +13,7 @@
 <body>
     <!-- ================= HEADER ================= -->
     <header class="header">
-        <a href="/tienda.html" class="logo">
+        <a href="../tienda.html" class="logo">
             DUCK-EE
         </a>
         <!--<input type="checkbox" id="toggle">
@@ -33,63 +32,29 @@
                     <a href="../us.html">Sobre Nosotros</a>
                 </li>
                 <li>
-                    <a href="../sesion.html">Perfil</a>
+                    <a href="../perfil.html">Perfil</a>
                 </li>
             </ul>
         </nav>
     </header>
-
     <main class="catalogo">
-    <section class="juguetes">
-        <ul>
-            <li class="juguetes">
-                <a href="/datos/invierno/invierno1.html"><img src="../images/Juguetes/Patos/Pato calabaza.webp"></a>
-                <p> Pato calabaza </p>
-            </li>
-            <li class="juguetes">
-                <a href="/datos/invierno/invierno2.html"><img src="../images/Juguetes/Patos/Pato navidad.jpg"></a>
-                <p> Pato navidad </p>
-            </li>
-            <li class="juguetes">
-                <a href="/datos/invierno/invierno3.html"><img src="../images/Juguetes/Invierno/Invierno Basta.jpg"></a>
-                <p> Basta en familia juego de mesa </p>
-            </li>
-            <li class="juguetes">
-                <a href="/datos/invierno/invierno4.html"><img src="../images/Juguetes/Invierno/Invierno Clue.jpg"></a>
-                <p> Clue juego de mesa </p>
-            </li>
-            <li class="juguetes">
-                <a href="/datos/invierno/invierno5.html"><img src="../images/Juguetes/Invierno/Invierno Rummy.jpg"></a>
-                <p> Rummy juego de mesa </p>
-            </li>
-            <li class="juguetes">
-                <a href="/datos/invierno/invierno6.html"><img src="../images/Juguetes/Invierno/Invierno cuatro.jpg"></a>
-                <p> Conecta Cuatro </p>
-            </li>
-            <li class="juguetes">
-                <a href="/datos/invierno/invierno7.html"><img src="../images/Juguetes/Invierno/Invierno Uno.jpg"></a>
-                <p> Uno juego de cartas </p>
-            </li>
-            <li class="juguetes">
-                <a href="/datos/invierno/invierno8.html"><img src="../images/Juguetes/Invierno/Invierno Adivina Quien.jpg"></a>
-                <p> Adivina Quien juegp de mesa </p>
-            </li>
-            <li class="juguetes">
-                <a href="/datos/invierno/invierno9.html"><img src="../images/Juguetes/Invierno/invierno tren.png"></a>
-                <p> Tren juguete </p>
-            </li>
-            <li class="juguetes">
-                <a href="/datos/invierno/invierno10.html"><img src="../images/Juguetes/Invierno/Invierno nieve magica.avif"></a>
-                <p> Set nieve magica </p>
-            </li>
-        </ul>
-    </section>
 
-    <footer class="footer">
+    <!-- La herramienta de busqueda revisa los subtitulos Y los nombres de archivo para que sepan como funciona -->
+    <section class="juguetes">
+
+        <div id="contenedorProductos" class="productos-grid">
+
+        </div>
+
+    </section>
+</main>
+<footer class="footer">
     <p><a href="https://www.instagram.com/duckee.company/">Contacto</a></p>
     <p>© 2026 Duck-ee. Todos los derechos reservados.</p>
 </footer>
+
+<script src="../js/catalogo_invierno.js"></script>
+ <script src="../js/script.js"></script>   
 <script src="../js/sesion-header.js"></script>
-</main>
 </body>
 </html>  

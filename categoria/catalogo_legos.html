@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Duck-ee | Catálogo</title>
     <link rel="stylesheet" href="../css/estilo-tienda.css">
-    <script src="../js/buscar.js"></script>
     <!-- Fuente -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,7 +13,7 @@
 <body>
     <!-- ================= HEADER ================= -->
     <header class="header">
-        <a href="/tienda.html" class="logo">
+        <a href="../tienda.html" class="logo">
             DUCK-EE
         </a>
         <!--<input type="checkbox" id="toggle">
@@ -33,63 +32,29 @@
                     <a href="../us.html">Sobre Nosotros</a>
                 </li>
                 <li>
-                    <a href="../sesion.html">Perfil</a>
+                    <a href="../perfil.html">Perfil</a>
                 </li>
             </ul>
         </nav>
     </header>
-
     <main class="catalogo">
-    <section class="juguetes">
-        <ul>
-            <li class="juguetes">
-                <a href="/datos/lego/lego1.html"><img src="../images/Juguetes/Legos/Lego halcon milenario.webp"></a>
-                <p> Lego Halcón Milenario </p>
-            </li>
-            <li class="juguetes">
-                <a href="/datos/lego/lego2.html"><img src="../images/Juguetes/Legos/Lego ep 3.avif"></a>
-                <p> Lego Arc-170 Starfighter </p>
-            </li>
-            <li class="juguetes">
-                <a href="/datos/lego/lego3.html"><img src="../images/Juguetes/Legos/Lego kit.jpg"></a>
-                <p> Maleta Lego</p>
-            </li>
-            <li class="juguetes">
-                <a href="/datos/lego/lego4.html"><img src="../images/Juguetes/Legos/Lego movie set.jpg"></a>
-                <p> Lego Movie Set </p>
-            </li>
-            <li class="juguetes">
-                <a href="/datos/lego/lego5.html"><img src="../images/Juguetes/Legos/Lego Ninjago.jpg"></a>
-                <p> Lego Ninjago </p>
-            </li>
-            <li class="juguetes">
-                <a href="/datos/lego/lego6.html"><img src="../images/Juguetes/Legos/Lego Snoopy.png"></a>
-                <p> Lego Snoopy </p>
-            </li>
-            <li class="juguetes">
-                <a href="/datos/lego/lego7.html"><img src="../images/Juguetes/Legos/AnimalCrossing.jpg"></a>
-                <p> Lego Animal Crossing </p>
-            </li>
-            <li class="juguetes">
-                <a href="/datos/lego/lego8.html"><img src="../images/Juguetes/Legos/DuoLego.webp                        "></a>
-                <p> Lego Flowers </p>
-            </li>
-            <li class="juguetes">
-                <a href="/datos/lego/lego9.html"><img src="../images/Juguetes/Legos/NocheEstrellada.jpg"></a>
-                <p> Lego Noche Estrellada </p>
-            </li>
-            <li class="juguetes">
-                <a href="/datos/lego/lego10.html"><img src="../images/Juguetes/Legos/KitLego.jpg"></a>
-                <p> Kit Lego </p>
-            </li>
-        </ul>
-    </section>
 
-    <footer class="footer">
+    <!-- La herramienta de busqueda revisa los subtitulos Y los nombres de archivo para que sepan como funciona -->
+    <section class="juguetes">
+
+        <div id="contenedorProductos" class="productos-grid">
+
+        </div>
+
+    </section>
+</main>
+<footer class="footer">
     <p><a href="https://www.instagram.com/duckee.company/">Contacto</a></p>
     <p>© 2026 Duck-ee. Todos los derechos reservados.</p>
 </footer>
+
+<script src="../js/catalogo_lego.js"></script>
+ <script src="../js/script.js"></script>   
 <script src="../js/sesion-header.js"></script>
-</main>
 </body>
 </html>  

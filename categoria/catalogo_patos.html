@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Duck-ee | Catálogo</title>
     <link rel="stylesheet" href="../css/estilo-tienda.css">
-    <script src="../js/buscar.js"></script>
     <!-- Fuente -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,7 +13,7 @@
 <body>
     <!-- ================= HEADER ================= -->
     <header class="header">
-        <a href="/tienda.html" class="logo">
+        <a href="../tienda.html" class="logo">
             DUCK-EE
         </a>
         <!--<input type="checkbox" id="toggle">
@@ -33,65 +32,29 @@
                     <a href="../us.html">Sobre Nosotros</a>
                 </li>
                 <li>
-                    <a href="../sesion.html">Perfil</a>
+                    <a href="../perfil.html">Perfil</a>
                 </li>
             </ul>
         </nav>
     </header>
+    <main class="catalogo">
 
     <!-- La herramienta de busqueda revisa los subtitulos Y los nombres de archivo para que sepan como funciona -->
-    <section class="juguetes"> 
-        <ul id="list">
-            <li class="juguetes">
-                <a href="../datos/patos/pato1.html"><img src="../images/Juguetes/Patos/Pato buzo.jpg"></a>
-                <p> Pato buzo </p>
-            </li>
-            <li class="juguetes">
-                <a href="../datos/patos/pato2.html"><img src="../images/Juguetes/Patos/Pato tpg.jpg"></a>
-                <p> Pato TPG </p>
-            </li>
-            <li class="juguetes">
-                <a href="../datos/patos/pato3.html"><img src="../images/Juguetes/Patos/Pato amarillo.jpg"></a>
-                <p> Pato amarillo </p>
-            </li>
-            <li class="juguetes">
-                <a href="../datos/patos/pato4.html"><img src="../images/Juguetes/Patos/Pato cool.jpg"></a>
-                <p> Pato cool </p>
-            </li>
-            <li class="juguetes">
-                <a href="../datos/patos/pato5.html"><img src="../images/Juguetes/Patos/leonpato.jpg"></a>
-                <p> Pato león </p>
-            </li>
-        </ul>
-        <ul>
-            <li class="juguetes">
-                <a href="../datos/patos/pato6.html"><img src="../images/Juguetes/Patos/Pato navidad.jpg"></a>
-                <p> Pato navidad </p>
-            </li>
-            <li class="juguetes">
-                <a href="../datos/patos/pato7.html"><img src="../images/Juguetes/Peluches/Peluche Patos.jpg"></a>
-                <p> Peluche Patos </p>
-            </li>
-            <li class="juguetes">
-                <a href="../datos/patos/pato8.html"><img src="../images/Juguetes/Patos/Pato calabaza.webp"></a>
-                <p> Pato calabaza </p>
-            </li>
-            <li class="juguetes">
-                <a href="../datos/patos/pato9.html"><img src="../images/Juguetes/Patos/jillpato.jpg"></a>
-                <p> Jill Pato </p>
-            </li>
-            <li class="juguetes">
-                <a href="../datos/patos/pato10.html"><img src="../images/Juguetes/Patos/patosvaquero.webp"></a>
-                <p> Patos Vaquero </p>
-            </li>
-        </ul>
-    </section>
+    <section class="juguetes">
 
+        <div id="contenedorProductos" class="productos-grid">
+
+        </div>
+
+    </section>
+</main>
 <footer class="footer">
     <p><a href="https://www.instagram.com/duckee.company/">Contacto</a></p>
     <p>© 2026 Duck-ee. Todos los derechos reservados.</p>
 </footer>
-<script src="js/sesion-header.js"></script>
-</main>
+
+<script src="../js/catalogo_pato.js"></script>
+ <script src="../js/script.js"></script>   
+<script src="../js/sesion-header.js"></script>
 </body>
 </html>  

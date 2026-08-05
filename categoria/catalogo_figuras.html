@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Duck-ee | Catálogo</title>
     <link rel="stylesheet" href="../css/estilo-tienda.css">
-    <script src="../js/buscar.js"></script>
     <!-- Fuente -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,7 +13,7 @@
 <body>
     <!-- ================= HEADER ================= -->
     <header class="header">
-        <a href="/tienda.html" class="logo">
+        <a href="../tienda.html" class="logo">
             DUCK-EE
         </a>
         <!--<input type="checkbox" id="toggle">
@@ -33,63 +32,29 @@
                     <a href="../us.html">Sobre Nosotros</a>
                 </li>
                 <li>
-                    <a href="../sesion.html">Perfil</a>
+                    <a href="../perfil.html">Perfil</a>
                 </li>
             </ul>
         </nav>
     </header>
-
     <main class="catalogo">
-<section class="juguetes">
-        <ul>
-            <li class="juguetes">
-                <a href="/datos/figuras/figura1.html"><img src="../images/Juguetes/Figuras/Figura Spiderman.jpg"></a>
-                <p> Figura Spiderman </p>
-            </li>
-            <li class="juguetes">
-                <a href="/datos/figuras/figura2.html"><img src="../images/Juguetes/Figuras/Figura Minecraft.jpg"></a>
-                <p> Figura Minecraft </p>
-            </li>
-            <li class="juguetes">
-                <a href="/datos/figuras/figura3.html"><img src="../images/Juguetes/Figuras/Figura Miku Senbonzakura.jpg"></a>
-                <p> Figura Miku Senbonzakura </p>
-            </li>
-            <li class="juguetes">
-                <a href="/datos/figuras/figura4.html"><img src="../images/Juguetes/Figuras/Figura Ben 10.avif"></a>
-                <p> Figura Ben 10 </p>
-            </li>
-            <li class="juguetes">
-                <a href="/datos/figuras/figura5.html"><img src="../images/Juguetes/Figuras/Figura Miku Cinnamon.webp"></a>
-                <p> Figura Hatsune Miku x Cinnamonroll </p>
-            </li>
-            <li class="juguetes">
-                <a href="/datos/figuras/figura6.html"><img src="../images/Juguetes/Figuras/Figura Mandalorian.jpg"></a>
-                <p> Figura Mandalorian </p>
-            </li>
-            <li class="juguetes">
-                <a href="/datos/figuras/figura7.html"><img src="../images/Juguetes/Figuras/Figura Bluey.jpg"></a>
-                <p> Figura Bluey </p>
-            </li>
-            <li class="juguetes">
-                <a href="/datos/figuras/figura8.html"><img src="../images/Juguetes/Figuras/Figura Darth Vader.jpg"></a>
-                <p> Figura Darth Vader </p>
-            </li>
-            <li class="juguetes">
-                <a href="/datos/figuras/figura9.html"><img src="../images/Juguetes/Figuras/Figura Chiikawa carro.webp"></a>
-                <p> Figura Chiikawa con carrito </p>
-            </li>
-            <li class="juguetes">
-                <a href="/datos/figuras/figura10.html"><img src="../images/Juguetes/Figuras/Figura Batman.webp"></a>
-                <p> Figura Batman </p>
-            </li>
-        </ul>
-    </section>
 
-    <footer class="footer">
+    <!-- La herramienta de busqueda revisa los subtitulos Y los nombres de archivo para que sepan como funciona -->
+    <section class="juguetes">
+
+        <div id="contenedorProductos" class="productos-grid">
+
+        </div>
+
+    </section>
+</main>
+<footer class="footer">
     <p><a href="https://www.instagram.com/duckee.company/">Contacto</a></p>
     <p>© 2026 Duck-ee. Todos los derechos reservados.</p>
 </footer>
+
+<script src="../js/catalogo_figura.js"></script>
+ <script src="../js/script.js"></script>   
 <script src="../js/sesion-header.js"></script>
-</main>
 </body>
 </html>  

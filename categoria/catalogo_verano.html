@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Duck-ee | Catálogo</title>
     <link rel="stylesheet" href="../css/estilo-tienda.css">
-    <script src="../js/buscar.js"></script>
     <!-- Fuente -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,7 +13,7 @@
 <body>
     <!-- ================= HEADER ================= -->
     <header class="header">
-        <a href="/tienda.html" class="logo">
+        <a href="../tienda.html" class="logo">
             DUCK-EE
         </a>
         <!--<input type="checkbox" id="toggle">
@@ -33,63 +32,29 @@
                     <a href="../us.html">Sobre Nosotros</a>
                 </li>
                 <li>
-                    <a href="../sesion.html">Perfil</a>
+                    <a href="../perfil.html">Perfil</a>
                 </li>
             </ul>
         </nav>
     </header>
-
     <main class="catalogo">
-    <section class="juguetes">
-        <ul>
-            <li class="juguetes">
-                <a href="/datos/verano/verano1.html"><img src="../images/Juguetes/Verano/Verano dino.avif"></a>
-                <p> Set Dinosaurio </p>
-            </li>
-            <li class="juguetes">
-                <a href="/datos/verano/verano2.html"><img src="../images/Juguetes/Verano/Verano pistolas.webp"></a>
-                <p> Set Pistolas </p>
-            </li>
-            <li class="juguetes">
-                <a href="/datos/verano/verano3.html"><img src="../images/Juguetes/Verano/Verano playa.jpg"></a>
-                <p> Set Playa </p>
-            </li>
-            <li class="juguetes">
-                <a href="/datos/verano/verano4.html"><img src="../images/Juguetes/Verano/Verano flota.jpeg"></a>
-                <p> Set Flotadores </p>
-            </li>
-            <li class="juguetes">
-                <a href="/datos/verano/verano5.html"><img src="../images/Juguetes/Verano/Verano gol.jpeg"></a>
-                <p> Porteria ALberca </p>
-            </li>
-            <li class="juguetes">
-                <a href="/datos/verano/verano6.html"><img src="../images/Juguetes/Verano/Verano set pistolas.jpg"></a>
-                <p> Pistolas de agua </p>
-            </li>
-            <li class="juguetes">
-                <a href="/datos/verano/verano7.html"><img src="../images/Juguetes/Verano/Verano set.webp"></a>
-                <p> Set caracolas </p>
-            </li>
-            <li class="juguetes">
-                <a href="/datos/verano/verano8.html"><img src="../images/Juguetes/Verano/Verano pistola agua.jpeg"></a>
-                <p> Set pistolas de agua </p>
-            </li>
-            <li class="juguetes">
-                <a href="/datos/verano/verano9.html"><img src="../images/Juguetes/Verano/Verano pelota.jpeg"></a>
-                <p> Pelota de playa </p>
-            </li>
-            <li class="juguetes">
-                <a href="/datos/verano/verano10.html"><img src="../images/Juguetes/Verano/Verano construccion.jpeg"></a>
-                <p> Set de Construccion Arena </p>
-            </li>
-        </ul>
-    </section>
 
-    <footer class="footer">
+    <!-- La herramienta de busqueda revisa los subtitulos Y los nombres de archivo para que sepan como funciona -->
+    <section class="juguetes">
+
+        <div id="contenedorProductos" class="productos-grid">
+
+        </div>
+
+    </section>
+</main>
+<footer class="footer">
     <p><a href="https://www.instagram.com/duckee.company/">Contacto</a></p>
     <p>© 2026 Duck-ee. Todos los derechos reservados.</p>
 </footer>
+
+<script src="../js/catalogo_verano.js"></script>
+ <script src="../js/script.js"></script>   
 <script src="../js/sesion-header.js"></script>
-</main>
 </body>
 </html>  
