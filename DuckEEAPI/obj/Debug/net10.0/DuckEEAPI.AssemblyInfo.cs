@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DuckEEAPI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d1f22041b18980dc294bbf76bf859e9001fb63d5")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6e5c256e026e7ab2f7a01675667316437c3fe4a7")]
 [assembly: System.Reflection.AssemblyProductAttribute("DuckEEAPI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DuckEEAPI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

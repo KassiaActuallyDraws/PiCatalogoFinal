@@ -1,133 +1,64 @@
 <!DOCTYPE html>
-
 <html lang="es">
-
 <head>
-
     <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
-    <title>
-
-        Duck-EE | Administración de Productos
-
-    </title>
-
-    <link rel="stylesheet"
-          href="css/estilo-tienda.css">
-
-    <link rel="stylesheet"
-          href="css/estilo-producto.css">
-
-    <link rel="preconnect"
-          href="https://fonts.googleapis.com">
-
-    <link rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap"
-          rel="stylesheet">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Duck-EE | Administración de Productos </title>
+    <link rel="stylesheet" href="css/estilo-tienda.css">
+    <link rel="stylesheet" href="css/estilo-producto.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Edu+AU+VIC+WA+NT+Guides:wght@500&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
 <header class="header">
-
-    <a href="perfil.html"
-       class="logo">
-
-        DUCK-EE
-
-    </a>
-
+    <a href="perfil.html" class="logo"> DUCK-EE </a>
     <nav class="navigation">
-
         <ul>
-
             <li>
-
-                <a href="perfil.html">
-
-                    Volver al Perfil
-
-                </a>
-
+                <a href="perfil.html"> Volver al Perfil</a>
             </li>
-
         </ul>
-
     </nav>
-
 </header>
 
 <main class="contenedor">
-
         <section class="cabecera">
-
-            <div>
-
-                <h1>
-
-                    Administración de Productos
-
-                </h1>
-
-            </div>
-
-            <button
-                id="nuevoProducto"
-                class="btn-principal">
-
-                Nuevo Producto
-
-            </button>
-
+            <ul>
+                <li>
+                    <div>
+                        <h1> Administración de Productos </h1>
+                    </div>
+                </li>
+                <li>
+                    <button id="nuevoProducto" class="btn-principal"> Nuevo Producto </button>
+                </li>
+            </ul>
         </section>
 
         <section class="acciones">
-
-            <input
-
-                type="text"
-
-                id="buscarProducto"
-
-                placeholder="Buscar producto...">
+            <input type="text" id="buscarProducto" placeholder="Buscar producto...">
 
         </section>
 
         <section class="tabla-contenedor">
-
             <table>
-
                 <thead>
-
                     <tr>
-
                         <th>ID</th>
-
                         <th>Imagen</th>
-
                         <th>Nombre</th>
-
                         <th>Precio</th>
-
                         <th>Stock</th>
-
                         <th>Categoría</th>
-
                         <th>Acciones</th>
-
                     </tr>
-
                 </thead>
 
                 <tbody id="tablaProductos">
-
                 </tbody>
 
             </table>

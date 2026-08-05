@@ -65,7 +65,7 @@
 
             <li>
 
-                <a href="perfil.html"><b>Perfil</b></a>
+                <a href="perfil.html" id="nom_tienda">Perfil</a>
 
             </li>
 
@@ -85,7 +85,7 @@
         <button class="menu-btn activo"
                 data-tab="inicio">
 
-            Inicio
+            Perfil
 
         </button>
 
@@ -104,6 +104,13 @@
         </button>
 
         <button class="menu-btn"
+                data-tab="mercado">
+
+            Panel de Vendedor
+
+        </button>
+
+        <button class="menu-btn"
                 data-tab="vistos">
 
             Productos vistos
@@ -111,20 +118,10 @@
         </button>
 
 
-        <button class="menu-btn"
-                data-tab="mercado">
-
-            Mercado
-
-        </button>
-
         <hr>
 
-        <button id="cerrarSesion"
-                class="menu-btn-salir">
-
+        <button id="cerrarSesion" class="menu-btn-salir">
             <a href="sesion.html">Cerrar sesión</a>
-
         </button>
 
     </aside>
@@ -138,35 +135,22 @@
         <div class="tab activa"
              id="inicio">
 
-            <h2>
+            <h2 id="saludo-perfil"> Bienvenido </h2>
 
-                Bienvenido
+            <script>
+            // Mostramos el nombre guardado; si no hay sesion, regresamos al login.
+            const usuario = localStorage.getItem("usuario");
+            if (usuario) {
+                document.getElementById("saludo-perfil").textContent = "Bienvenido, " + usuario;
+            }
 
-            </h2>
+        </script>
 
-            <p>
+            <p><b>Correo: </b> <span id="correoPerfil"></span> </p>
 
-                Correo:
+            <p><b>Rol: </b><span id="rol"></span></p>
 
-                <span id="correoPerfil"></span>
-
-            </p>
-
-            <p>
-
-                Rol:
-
-                <span id="rol"></span>
-
-            </p>
-
-            <p>
-
-                Estado:
-
-                Activo
-
-            </p>
+            <p><b>Estado: </b>Activo</p>
 
         </div>
 
@@ -326,6 +310,7 @@
 
 <script src="js/perfil.js"></script>
 <script src="js/producto.js"></script>
+<script src="../js/sesion-header.js"></script>
 
 </body>
 

@@ -125,7 +125,8 @@ body{
 
 .menu-btn-salir{
 
-    color: black;
+    color:rgb(0, 0, 0);
+
     width:100%;
 
     margin:10px 0;
@@ -148,12 +149,21 @@ body{
 
 }
 
-.menu-btn:hover{
+.menu-btn-salir a{
+    color:rgb(0, 0, 0);
+}
+
+.menu-btn:hover,
+.menu-btn-salir:hover{
 
     background:#F3CF18;
 
     color:white;
 
+}
+
+.menu-btn-salir:hover a{
+    color:white;
 }
 
 .menu-btn.activo{
