@@ -32,7 +32,7 @@ function pintar(lista){
 
         <div class="producto">
 
-            <a href="dato${p.id}.html">
+            <a href="/datos/dato${p.id}.html">
 
                 <img src="${p.imagen}">
 

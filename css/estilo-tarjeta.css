@@ -34,7 +34,7 @@ h2,
 
     width:100%;
 
-    background:#D8AF32;
+    background:linear-gradient(90deg,#FFBB00,#F3CF18);
 
     display:flex;
     justify-content:space-between;
