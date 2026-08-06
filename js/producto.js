@@ -9,6 +9,8 @@ document.getElementById("buscarProducto");
 const btnNuevo =
 document.getElementById("nuevoProducto");
 
+const rol = localStorage.getItem("rol");
+
 let productos = [];
 
 let productosFiltrados = [];
@@ -149,7 +151,7 @@ function dibujarTabla(lista){
 
                 <button
 
-                    class="btn-editar"
+                    class="btn-editar" 
 
                     onclick="editarProducto(${producto.id})">
 
@@ -159,7 +161,7 @@ function dibujarTabla(lista){
 
                 <button
 
-                    class="btn-eliminar"
+                    class="btn-eliminar" data-tab="nuevo"
 
                     onclick="eliminarProducto(${producto.id})">
 
@@ -176,6 +178,7 @@ function dibujarTabla(lista){
     });
 
 }
+
 
 function filtrarProductos(){
 
@@ -478,4 +481,17 @@ async function subirImagen() {
     const datos = JSON.parse(texto);
     // Retornamos la ruta accesible desde la API
     return `http://localhost:5129/${datos.ruta}`;
+}
+
+if (rol === "Vendedor") {
+
+    const botonMercado = document.querySelector('[data-tab="nuevo"]');
+    
+
+    if (botonMercado) {
+
+        botonMercado.style.display = "none";
+
+    }
+
 }
