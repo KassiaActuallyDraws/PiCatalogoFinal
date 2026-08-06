@@ -252,349 +252,186 @@ document.getElementById("marcaProducto");
 const txtProveedor =
 document.getElementById("proveedorProducto");
 
-const txtImagen =
-document.getElementById("archivoImagen");
-
-const preview =
-document.getElementById("previewProducto");
+const txtImagen = document.getElementById("archivoImagen");
+const preview = document.getElementById("previewProducto");
 
 let modoEditar = false;
+let imagenActual = "";
 
-
-if(btnCerrar){
-
-    btnCerrar.addEventListener("click",cerrarModal);
-
+if (btnCerrar) {
+    btnCerrar.addEventListener("click", cerrarModal);
 }
 
-if(btnCancelar){
-
-    btnCancelar.addEventListener("click",cerrarModal);
-
+if (btnCancelar) {
+    btnCancelar.addEventListener("click", cerrarModal);
 }
 
-window.addEventListener("click",(e)=>{
-
-    if(e.target===modal){
-
+window.addEventListener("click", (e) => {
+    if (e.target === modal) {
         cerrarModal();
-
     }
-
 });
 
-if(txtImagen){
-
-txtImagen.addEventListener("change",()=>{
-
-    if(txtImagen.files.length===0){
-
-        preview.src="images/productos/default.png";
-
-        return;
-
-    }
-
-    const lector=new FileReader();
-
-    lector.onload=(e)=>{
-
-        preview.src=e.target.result;
-
-    };
-
-    lector.readAsDataURL(txtImagen.files[0]);
-
-});
-
-}
-
-function abrirModal(){
-
-    if(!modal)return;
-
-    modal.style.display="flex";
-
-}
-
-function cerrarModal(){
-
-    if(!modal)return;
-
-    modal.style.display="none";
-
-    formulario.reset();
-
-    txtId.value="";
-
-    modoEditar=false;
-
-    preview.src="images/productos/default.png";
-
-}
-
-function abrirNuevoProducto(){
-
-    modoEditar=false;
-
-    tituloModal.textContent=
-
-    "Agregar Producto";
-
-    formulario.reset();
-
-    txtId.value="";
-
-    preview.src="images/productos/default.png";
-
-    abrirModal();
-
-}
-
-async function editarProducto(id){
-
-    try{
-
-        const respuesta=
-
-        await fetch(`${API}/producto/${id}`);
-
-        if(!respuesta.ok){
-
-            throw new Error();
-
+if (txtImagen) {
+    txtImagen.addEventListener("change", () => {
+        if (txtImagen.files.length === 0) {
+            preview.src = modoEditar && imagenActual ? imagenActual : "images/productos/default.png";
+            return;
         }
 
-        const producto=
+        const lector = new FileReader();
+        lector.onload = (e) => {
+            preview.src = e.target.result;
+        };
+        lector.readAsDataURL(txtImagen.files[0]);
+    });
+}
 
-        await respuesta.json();
+function abrirModal() {
+    if (!modal) return;
+    modal.style.display = "flex";
+}
 
-        modoEditar=true;
+function cerrarModal() {
+    if (!modal) return;
+    modal.style.display = "none";
+    formulario.reset();
+    txtId.value = "";
+    modoEditar = false;
+    imagenActual = "";
+    preview.src = "images/productos/default.png";
+}
 
-        tituloModal.textContent=
+function abrirNuevoProducto() {
+    modoEditar = false;
+    imagenActual = "";
+    tituloModal.textContent = "Agregar Producto";
+    formulario.reset();
+    txtId.value = "";
+    preview.src = "images/productos/default.png";
+    abrirModal();
+}
 
-        "Editar Producto";
+async function editarProducto(id) {
+    try {
+        const respuesta = await fetch(`${API}/producto/${id}`);
+        if (!respuesta.ok) {
+            throw new Error("Error al obtener los datos del producto.");
+        }
 
-        txtId.value=producto.id;
-
-        txtNombre.value=producto.nombre;
-
-        txtDescripcion.value=
-
-        producto.descripcion;
-
-        txtPrecio.value=producto.precio;
-
-        txtStock.value=producto.stock;
-
-        txtCategoria.value=
-
-        producto.categoria;
-
-        txtMarca.value=
-
-        producto.marca;
-
-        txtProveedor.value=
-
-        producto.proveedor;
-
-        preview.src=
-
-        producto.imagen;
+        const producto = await respuesta.json();
+        modoEditar = true;
+        tituloModal.textContent = "Editar Producto";
+        txtId.value = producto.id;
+        txtNombre.value = producto.nombre;
+        txtDescripcion.value = producto.descripcion;
+        txtPrecio.value = producto.precio;
+        txtStock.value = producto.stock;
+        txtCategoria.value = producto.categoria;
+        txtMarca.value = producto.marca;
+        txtProveedor.value = producto.proveedor;
+        
+        imagenActual = producto.imagen || "images/productos/default.png";
+        preview.src = imagenActual;
 
         abrirModal();
-
-    }
-
-    catch(error){
-
+    } catch (error) {
         console.error(error);
-
-        alert("No fue posible abrir el producto.");
-
+        alert("No fue posible abrir el producto para su edición.");
     }
-
 }
 
-if(formulario){
-
-    formulario.addEventListener("submit",guardarProducto);
-
+if (formulario) {
+    formulario.addEventListener("submit", guardarProducto);
 }
 
-
-async function guardarProducto(e){
-
+async function guardarProducto(e) {
     e.preventDefault();
 
-    try{
-    const rutaImagen = await subirImagen();
+    try {
+        const rutaImagen = await subirImagen();
 
-    const datos = {
-
-            nombre:txtNombre.value.trim(),
-
-            descripcion:txtDescripcion.value.trim(),
-
-            precio:parseFloat(txtPrecio.value),
-
-            stock:parseInt(txtStock.value),
-
+        const datos = {
+            nombre: txtNombre.value.trim(),
+            descripcion: txtDescripcion.value.trim(),
+            precio: parseFloat(txtPrecio.value),
+            stock: parseInt(txtStock.value),
             imagen: rutaImagen,
-
-            idCategoria:parseInt(txtCategoria.value),
-
-            idMarca:parseInt(txtMarca.value),
-
-            idProveedor:parseInt(txtProveedor.value)
-
+            idCategoria: parseInt(txtCategoria.value),
+            idMarca: parseInt(txtMarca.value),
+            idProveedor: parseInt(txtProveedor.value)
         };
 
-        if(
-
-            datos.nombre==="" ||
-
+        if (
+            datos.nombre === "" ||
             isNaN(datos.precio) ||
-
-            isNaN(datos.stock)
-
-        ){
-
-            alert("Completa la información requerida.");
-
+            isNaN(datos.stock) ||
+            isNaN(datos.idCategoria) ||
+            isNaN(datos.idMarca) ||
+            isNaN(datos.idProveedor)
+        ) {
+            alert("Por favor completa toda la información requerida correctamente.");
             return;
-
         }
 
         let respuesta;
-
-        if(modoEditar){
-
-            respuesta=await fetch(
-
-                `${API}/producto/${txtId.value}`,
-
-                {
-
-                    method:"PUT",
-
-                    headers:{
-
-                        "Content-Type":"application/json"
-
-                    },
-
-                    body:JSON.stringify(datos)
-
-                }
-
-            );
-
+        if (modoEditar) {
+            respuesta = await fetch(`${API}/producto/${txtId.value}`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(datos)
+            });
+        } else {
+            respuesta = await fetch(`${API}/producto`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(datos)
+            });
         }
 
-        else{
+        const resultado = await respuesta.json();
 
-            respuesta=await fetch(
-
-                `${API}/producto`,
-
-                {
-
-                    method:"POST",
-
-                    headers:{
-
-                        "Content-Type":"application/json"
-
-                    },
-
-                    body:JSON.stringify(datos)
-
-                }
-
-            );
-
-        }
-
-        const resultado=await respuesta.json();
-
-        if(!respuesta.ok){
-
-            alert(resultado.mensaje);
-
+        if (!respuesta.ok) {
+            alert(resultado.mensaje || "Ocurrió un error al guardar los cambios.");
             return;
-
         }
 
         alert(resultado.mensaje);
-
         cerrarModal();
-
         await cargarProductos();
-
-    }
-
-    catch(error){
-
+    } catch (error) {
         console.error(error);
-
-        alert("No fue posible guardar el producto.");
-
+        alert(error.message || "No fue posible guardar el producto.");
     }
-
 }
 
-async function eliminarProducto(id){
-
-    if(!confirm("¿Deseas eliminar este producto?")){
-
+async function eliminarProducto(id) {
+    if (!confirm("¿Deseas eliminar este producto?")) {
         return;
-
     }
 
-    try{
+    try {
+        const respuesta = await fetch(`${API}/producto/${id}`, {
+            method: "DELETE"
+        });
 
-        const respuesta=
+        const resultado = await respuesta.json();
 
-        await fetch(
-
-            `${API}/producto/${id}`,
-
-            {
-
-                method:"DELETE"
-
-            }
-
-        );
-
-        const resultado=
-
-        await respuesta.json();
-
-        if(!respuesta.ok){
-
-            alert(resultado.mensaje);
-
+        if (!respuesta.ok) {
+            alert(resultado.mensaje || "Error al eliminar.");
             return;
-
         }
 
         alert(resultado.mensaje);
-
         await cargarProductos();
-
-    }
-
-    catch(error){
-
+    } catch (error) {
         console.error(error);
-
         alert("No fue posible eliminar el producto.");
-
     }
-
 }
 
 async function actualizarTabla(){
@@ -603,57 +440,42 @@ async function actualizarTabla(){
 
 }
 
-function limpiarFormulario(){
-
-    if(formulario){
-
+function limpiarFormulario() {
+    if (formulario) {
         formulario.reset();
-
     }
-
-    txtId.value="";
-
-    modoEditar=false;
-
-    if(preview){
-
-        preview.src="images/productos/default.png";
-
+    txtId.value = "";
+    modoEditar = false;
+    imagenActual = "";
+    if (preview) {
+        preview.src = "images/productos/default.png";
     }
-
 }
 
 async function subirImagen() {
-
-    if (txtImagen.files.length === 0) {
-
-        return "galeria/default.png";
-
+    // Si no se seleccionó archivo nuevo al editar, conservamos la imagen actual del producto
+    if (!txtImagen || txtImagen.files.length === 0) {
+        if (modoEditar && imagenActual) {
+            return imagenActual;
+        }
+        return "images/productos/default.png";
     }
 
     const formData = new FormData();
-
     formData.append("archivo", txtImagen.files[0]);
 
-    const respuesta = await fetch(
-        "http://localhost:5129/api/subir-imagen",
-        {
-            method: "POST",
-            body: formData
-        }
-    );
+    const respuesta = await fetch(`${API}/subir-imagen`, {
+        method: "POST",
+        body: formData
+    });
 
     const texto = await respuesta.text();
 
-    console.log("Estado:", respuesta.status);
-    console.log("Respuesta:", texto);
-
     if (!respuesta.ok) {
-
-        throw new Error(texto);
-
+        throw new Error("No se pudo subir la imagen al servidor: " + texto);
     }
 
-    return JSON.parse(texto).ruta;
-
+    const datos = JSON.parse(texto);
+    // Retornamos la ruta accesible desde la API
+    return `http://localhost:5129/${datos.ruta}`;
 }

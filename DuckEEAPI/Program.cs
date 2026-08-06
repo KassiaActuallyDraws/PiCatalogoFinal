@@ -1,6 +1,9 @@
 using Microsoft.Data.SqlClient;
 using Microsoft.AspNetCore.Mvc;
 
+var carpetaGaleria = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "galeria");
+Directory.CreateDirectory(carpetaGaleria);
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddSingleton<ConexionDB>();
@@ -56,7 +59,7 @@ async ([FromForm] IFormFile archivo) =>
     {
         ruta = $"galeria/{nombreArchivo}"
     });
-});
+}).DisableAntiforgery();
 
 app.MapPost("/api/registro", (RegistroDTO usuario, ConexionDB db) =>
 {
