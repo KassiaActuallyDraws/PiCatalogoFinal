@@ -186,3 +186,4 @@ C:\Users\kikir\Downloads\PICatalogo-PI\DuckEEAPI\obj\Debug\net10.0\refint\DuckEE
 C:\Users\kikir\Downloads\PICatalogo-PI\DuckEEAPI\obj\Debug\net10.0\DuckEEAPI.pdb
 C:\Users\kikir\Downloads\PICatalogo-PI\DuckEEAPI\obj\Debug\net10.0\DuckEEAPI.genruntimeconfig.cache
 C:\Users\kikir\Downloads\PICatalogo-PI\DuckEEAPI\obj\Debug\net10.0\ref\DuckEEAPI.dll
+C:\Users\kikir\Downloads\PICatalogo-PI\DuckEEAPI\bin\Debug\net10.0\DuckEEAPI.staticwebassets.runtime.json
