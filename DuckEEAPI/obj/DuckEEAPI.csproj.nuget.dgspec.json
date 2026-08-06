@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\kikir\\Downloads\\PICatalogo-PI\\PICatalogo-PI\\DuckEEAPI\\DuckEEAPI.csproj": {}
+    "C:\\Users\\kikir\\Downloads\\PICatalogo-PI\\DuckEEAPI\\DuckEEAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\kikir\\Downloads\\PICatalogo-PI\\PICatalogo-PI\\DuckEEAPI\\DuckEEAPI.csproj": {
+    "C:\\Users\\kikir\\Downloads\\PICatalogo-PI\\DuckEEAPI\\DuckEEAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\kikir\\Downloads\\PICatalogo-PI\\PICatalogo-PI\\DuckEEAPI\\DuckEEAPI.csproj",
+        "projectUniqueName": "C:\\Users\\kikir\\Downloads\\PICatalogo-PI\\DuckEEAPI\\DuckEEAPI.csproj",
         "projectName": "DuckEEAPI",
-        "projectPath": "C:\\Users\\kikir\\Downloads\\PICatalogo-PI\\PICatalogo-PI\\DuckEEAPI\\DuckEEAPI.csproj",
+        "projectPath": "C:\\Users\\kikir\\Downloads\\PICatalogo-PI\\DuckEEAPI\\DuckEEAPI.csproj",
         "packagesPath": "C:\\Users\\kikir\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\kikir\\Downloads\\PICatalogo-PI\\PICatalogo-PI\\DuckEEAPI\\obj\\",
+        "outputPath": "C:\\Users\\kikir\\Downloads\\PICatalogo-PI\\DuckEEAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\kikir\\AppData\\Roaming\\NuGet\\NuGet.Config",
